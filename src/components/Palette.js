@@ -4,12 +4,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Header from "./Header";
-import Headline from "./Headline";
-import TextArea from "./TextArea";
-import Image from "./Image";
-import EmailField from "./EmailField";
-import Footer from "./Footer";
+import Header from "./Copy/Header";
+import Headline from "./Copy/Headline";
+import TextArea from "./Copy/TextArea";
+import Image from "./Copy/Image";
+import EmailField from "./Copy/EmailField";
+import Footer from "./Copy/Footer";
 // import headline from "./Headline";
 // import image from "./Image";
 // import emailField from "./EmailField";
@@ -17,62 +17,6 @@ import Footer from "./Footer";
 import * as actionTypes from "../store/constants";
 
 class Palette extends Component {
-	// state = {
-	// 	components: []
-	// };
-
-	// // Disabled non-Redux state code
-	// addComponent(e) {
-	// 	console.log(e.target.innerHTML);
-	// 	if (e.target.innerHTML === "Header") {
-	// 		let newComponent = [...this.state.components];
-	// 		newComponent.push("Header");
-	// 		this.setState({ components: newComponent });
-	// 	} else if (e.target.innerHTML === "Headline") {
-	// 		let newComponent = [...this.state.components];
-	// 		newComponent.push("Headline");
-	// 		this.setState({ components: newComponent });
-	// 	} else if (e.target.innerHTML === "Text Area") {
-	// 		let newComponent = [...this.state.components];
-	// 		newComponent.push("Text Area");
-	// 		this.setState({ components: newComponent });
-	// 	} else if (e.target.innerHTML === "Image") {
-	// 		let newComponent = [...this.state.components];
-	// 		newComponent.push("Image");
-	// 		this.setState({ components: newComponent });
-	// 	} else if (e.target.innerHTML === "Email Field") {
-	// 		let newComponent = [...this.state.components];
-	// 		newComponent.push("Email Field");
-	// 		this.setState({ components: newComponent });
-	// 	} else if (e.target.innerHTML === "Footer") {
-	// 		let newComponent = [...this.state.components];
-	// 		newComponent.push("Footer");
-	// 		this.setState({ components: newComponent });
-	// 	}
-	// }
-
-	// renderStateComponents(e) {
-	// 	let toRender = [];
-
-	// 	for (let i = 0; i < this.state.components.length; i++) {
-	// 		if (this.state.components[i] === "Header") {
-	// 			toRender.push(<Header key={i}></Header>);
-	// 		} else if (this.state.components[i] === "Headline") {
-	// 			toRender.push(<Headline key={i}></Headline>);
-	// 		} else if (this.state.components[i] === "Text Area") {
-	// 			toRender.push(<TextArea keys={i}></TextArea>);
-	// 		} else if (this.state.components[i] === "Image") {
-	// 			toRender.push(<Image keys={i}></Image>);
-	// 		} else if (this.state.components[i] === "Email Field") {
-	// 			toRender.push(<EmailField keys={i}></EmailField>);
-	// 		} else if (this.state.components[i] === "Footer") {
-	// 			toRender.push(<Footer keys={i}></Footer>);
-	// 		}
-	// 	}
-
-	// 	return toRender;
-	// }
-
 	addComponent(e) {
 		console.log(e.target.innerHTML);
 		if (e.target.innerHTML === "Header") {
@@ -91,11 +35,18 @@ class Palette extends Component {
 	}
 
 	renderStateComponents(e) {
+		// Is it really DRY enough having the same function in both Palette.js and Customizer.js?
 		let toRender = [];
 
 		for (let i = 0; i < this.props.comp.length; i++) {
 			if (this.props.comp[i] === "Header") {
-				toRender.push(<Header key={i}></Header>);
+				toRender.push(
+					<Header
+						key={i}
+						moveUp={this.moveUp}
+						moveDown={this.moveDown}
+					></Header>
+				);
 			} else if (this.props.comp[i] === "Headline") {
 				toRender.push(<Headline key={i}></Headline>);
 			} else if (this.props.comp[i] === "Text Area") {
@@ -123,7 +74,7 @@ class Palette extends Component {
 				<button onClick={e => this.addComponent(e)}>Email Field</button>
 				<button onClick={e => this.addComponent(e)}>Footer</button>
 				<div>{this.renderStateComponents()}</div>
-				<Link to="/customizer">Go To Next Page</Link>
+				<Link to="/customizer">Go To Next Step</Link>
 			</div>
 		);
 	}

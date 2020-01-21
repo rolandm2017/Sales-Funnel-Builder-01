@@ -12,6 +12,7 @@ function App() {
 			<Route path="/customizer" component={Customizer}></Route>
 
 			<Route path="/" exact component={Palette}></Route>
+			<p>Note: You lose your work if you refresh the page!</p>
 		</div>
 	);
 }

@@ -5,9 +5,9 @@ const emailField = () => {
 		<div>
 			<h3>Email Field</h3>
 			<p>Email</p>
-			<input></input>
+			<input placeholder="Your best email goes here..."></input>
 			<p>First Name</p>
-			<input></input>
+			<input placeholder="Your first name..."></input>
 		</div>
 	);
 };
