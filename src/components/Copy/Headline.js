@@ -4,12 +4,9 @@ const headline = props => {
 	return (
 		<div>
 			<h1>Headline</h1>
-			<button onClick={event => this.moveUp(event)}>
-				Move Section Up
-			</button>
-			<button onClick={event => this.moveDown(event)}>
-				Move Section Down
-			</button>
+			<button onClick={props.moveUp}>Move Section Up</button>
+			<button onClick={props.moveDown}>Move Section Down</button>
+			<button onClick={props.del}>Delete Section</button>
 		</div>
 	);
 };

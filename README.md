@@ -1,3 +1,13 @@
+<h1>Welcome to Roland's "Sales Funnel Builder"</h1>
+
+<p>In this project, Roland is starting to build a tool that could be used to create Sales Funnels.</p>
+
+<p>The project was started on January 19th, 2020 and has been added to daily since inception.</p>
+
+<p>You are encouraged to clone the repo, run "npm install" and "npm start" on your own local machine to see what it looks like loaded up.</p>
+
+<p>If you don't feel like doing that, just check out the code in Palette.js. (The other files don't have nearly as much going on.)</p>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -18,17 +18,17 @@ class Customizer extends Component {
 		let toRender = [];
 
 		for (let i = 0; i < this.props.comp.length; i++) {
-			if (this.props.comp[i] === "Header") {
+			if (this.props.comp[i].type === "Header") {
 				toRender.push(<Header key={i}></Header>);
-			} else if (this.props.comp[i] === "Headline") {
+			} else if (this.props.comp[i].type === "Headline") {
 				toRender.push(<Headline key={i}></Headline>);
-			} else if (this.props.comp[i] === "Text Area") {
+			} else if (this.props.comp[i].type === "Text Area") {
 				toRender.push(<TextArea keys={i}></TextArea>);
-			} else if (this.props.comp[i] === "Image") {
+			} else if (this.props.comp[i].type === "Image") {
 				toRender.push(<Image keys={i}></Image>);
-			} else if (this.props.comp[i] === "Email Field") {
+			} else if (this.props.comp[i].type === "Email Field") {
 				toRender.push(<EmailField keys={i}></EmailField>);
-			} else if (this.props.comp[i] === "Footer") {
+			} else if (this.props.comp[i].type === "Footer") {
 				toRender.push(<Footer keys={i}></Footer>);
 			}
 		}
@@ -37,10 +37,17 @@ class Customizer extends Component {
 	}
 
 	render() {
+		let debugging = "";
+		for (let i = 0; i < this.props.comp.length; i++) {
+			// makes each element of the state.components array show up on the screen
+			debugging += this.props.comp[i].type;
+			debugging += this.props.comp[i].id;
+		}
+
 		return (
 			<div>
+				<p>Debugging: {debugging}</p>
 				<p>Your Custom Elements</p>
-				<p>Debugging: {this.props.comp}</p>
 
 				{this.renderStateComponents()}
 				<Link to="/">Back</Link>
