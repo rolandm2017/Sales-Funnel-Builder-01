@@ -1,14 +1,25 @@
 import React from "react";
 
+import { connect } from "react-redux";
+
 const footer = props => {
 	// TODO: Make the Footer ALWAYS appear at the bottom
 	// todo: and the Header ALWAYS appear at the top
 	return (
 		<div>
 			<p>Footer</p>
-			<button onClick={props.del}>Remove Footer</button>
+			{props.pg === 1 ? (
+				<button onClick={props.del}>Remove Footer</button>
+			) : null}
 		</div>
 	);
 };
 
-export default footer;
+const mapStateToProps = state => {
+	return {
+		comp: state.components,
+		pg: state.currentPage
+	};
+};
+
+export default connect(mapStateToProps)(footer);

@@ -15,14 +15,19 @@ import * as actionTypes from "../store/constants";
 
 class Palette extends Component {
 	// TODO: Add removeFooter and removeHeader methods
-
-	// TODO: Add deleteComponent methods (allow the user to delete a component)
+	// TODO: Make sure the Header always loads at the Top and Footer always loads at the Bottom
+	// TODO: Make sure you can only have ONE Header & Footer
 
 	// TODO: Add button that FWDs us to the next page where you can set custom text in each element
 
+	componentDidMount() {
+		this.props.setPage(1);
+	}
+
 	addComponent(e) {
-		// console.log(e.target.innerHTML);
+		// starts the process of rendering a component to the DOM
 		if (e.target.innerHTML === "Header") {
+			// Redux dispatch methods
 			this.props.header();
 		} else if (e.target.innerHTML === "Headline") {
 			this.props.headline();
@@ -39,17 +44,12 @@ class Palette extends Component {
 
 	deleteComponent(typeAndId) {
 		let tempArray = [...this.props.comp];
-		// console.log("TEMP:", tempArray);
-		// console.log("TYPEANDID:", typeAndId[1]);
 		let index;
 		for (let i = 0; i < tempArray.length; i++) {
 			if (tempArray[i].id === typeAndId[1]) {
-				console.log(tempArray[i].id);
 				index = i;
 			}
 		}
-		// console.log("INDEX:", index);
-		// console.log("DELETING:", tempArray[index]);
 		tempArray.splice(index, 1);
 		this.props.delComponent(tempArray);
 	}
@@ -120,7 +120,7 @@ class Palette extends Component {
 	}
 
 	renderStateComponents(e) {
-		// Is it really DRY enough having the same function in both Palette.js and Customizer.js?
+		// Is it really DRY enough having the same function in both Palette.js and Customize.js?
 		let toRender = [];
 
 		for (let i = 0; i < this.props.comp.length; i++) {
@@ -165,7 +165,6 @@ class Palette extends Component {
 					></Headline>
 				);
 			} else if (this.props.comp[i].type === "Text Area") {
-				console.log(this.props.comp[i].id);
 				toRender.push(
 					<TextArea
 						key={i}
@@ -191,7 +190,6 @@ class Palette extends Component {
 					></TextArea>
 				);
 			} else if (this.props.comp[i].type === "Image") {
-				console.log(this.props.comp[i].id);
 				toRender.push(
 					<Image
 						key={i}
@@ -284,6 +282,9 @@ class Palette extends Component {
 		return (
 			<div>
 				<p>Debugging: {debugging}</p>
+				<p>Debugging, page: {this.props.pg}</p>
+
+				<h2>Select Your Custom Elements</h2>
 				<button onClick={e => this.addComponent(e)}>Header</button>
 				<button onClick={e => this.addComponent(e)}>Headline</button>
 				<button onClick={e => this.addComponent(e)}>Text Area</button>
@@ -291,7 +292,7 @@ class Palette extends Component {
 				<button onClick={e => this.addComponent(e)}>Email Field</button>
 				<button onClick={e => this.addComponent(e)}>Footer</button>
 				<div>{this.renderStateComponents()}</div>
-				<Link to="/customizer">Go To Next Step</Link>
+				<Link to="/customize">Go To Next Step</Link>
 			</div>
 		);
 	}
@@ -299,7 +300,8 @@ class Palette extends Component {
 
 const mapStateToProps = state => {
 	return {
-		comp: state.components
+		comp: state.components,
+		pg: state.currentPage
 	};
 };
 
@@ -312,8 +314,10 @@ const mapDispatchToProps = dispatch => {
 		emailField: () => dispatch({ type: actionTypes.EMAIL_FIELD }),
 		footer: () => dispatch({ type: actionTypes.FOOTER }),
 		setNewComponents: newOrder =>
-			dispatch({ type: "SET_NEW", payload: newOrder }),
-		delComponent: del => dispatch({ type: "DEL", payload: del })
+			dispatch({ type: actionTypes.SET_NEW, payload: newOrder }),
+		delComponent: del => dispatch({ type: actionTypes.DEL, payload: del }),
+		setPage: page =>
+			dispatch({ type: actionTypes.PAGE_CHANGE, payload: page })
 	};
 };
 

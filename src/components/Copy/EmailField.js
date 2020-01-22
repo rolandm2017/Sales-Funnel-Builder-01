@@ -1,5 +1,7 @@
 import React from "react";
 
+import { connect } from "react-redux";
+
 const emailField = props => {
 	return (
 		<div>
@@ -9,11 +11,22 @@ const emailField = props => {
 			<p>First Name</p>
 			<input placeholder="Your first name..."></input>
 			<br />
-			<button onClick={props.moveUp}>Move Section Up</button>
-			<button onClick={props.moveDown}>Move Section Down</button>
-			<button onClick={props.del}>Delete Section</button>
+			{props.pg === 1 ? (
+				<div>
+					<button onClick={props.moveUp}>Move Section Up</button>
+					<button onClick={props.moveDown}>Move Section Down</button>
+					<button onClick={props.del}>Delete Section</button>
+				</div>
+			) : null}
 		</div>
 	);
 };
 
-export default emailField;
+const mapStateToProps = state => {
+	return {
+		comp: state.components,
+		pg: state.currentPage
+	};
+};
+
+export default connect(mapStateToProps)(emailField);

@@ -4,3 +4,6 @@ export const TEXT_AREA = "TEXT_AREA";
 export const IMAGE = "IMAGE";
 export const EMAIL_FIELD = "EMAIL_FIELD";
 export const FOOTER = "FOOTER";
+export const SET_NEW = "SET_NEW";
+export const DEL = "DEL";
+export const PAGE_CHANGE = "PAGE_CHANGE";
