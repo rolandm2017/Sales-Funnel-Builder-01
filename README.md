@@ -6,7 +6,7 @@
 
 <p>You are encouraged to clone the repo, run "npm install" and "npm start" on your own local machine to see what it looks like loaded up.</p>
 
-<p>If you don't feel like doing that, just check out the code in Palette.js. (The other files don't have nearly as much going on.)</p>
+<p>If you don't feel like doing that, just check out the code in <em>Palette.js, Customize.js, FinalPage.js, and reducer.js.</em> (The other files don't have nearly as much going on.)</p>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
