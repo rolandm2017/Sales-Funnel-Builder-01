@@ -14,15 +14,17 @@ import Footer from "./Copy/Footer";
 import * as actionTypes from "../store/constants";
 
 class Palette extends Component {
-	// TODO: Add removeFooter and removeHeader methods
-
-	// TODO: Add deleteComponent methods (allow the user to delete a component)
-
-	// TODO: Add button that FWDs us to the next page where you can set custom text in each element
+	componentDidMount() {
+		this.props.setPage(1);
+	}
 
 	addComponent(e) {
-		// console.log(e.target.innerHTML);
-		if (e.target.innerHTML === "Header") {
+		// starts the process of rendering a component to the DOM
+		const headerArray = this.props.comp.filter(x => x.type === "Header");
+		const footerArray = this.props.comp.filter(x => x.type === "Footer");
+
+		if (e.target.innerHTML === "Header" && headerArray.length < 1) {
+			// Redux dispatch methods
 			this.props.header();
 		} else if (e.target.innerHTML === "Headline") {
 			this.props.headline();
@@ -32,24 +34,21 @@ class Palette extends Component {
 			this.props.image();
 		} else if (e.target.innerHTML === "Email Field") {
 			this.props.emailField();
-		} else if (e.target.innerHTML === "Footer") {
+		} else if (e.target.innerHTML === "Footer" && footerArray.length < 1) {
 			this.props.footer();
+		} else {
+			console.log("Error: Can only add one header/footer component");
 		}
 	}
 
 	deleteComponent(typeAndId) {
 		let tempArray = [...this.props.comp];
-		// console.log("TEMP:", tempArray);
-		// console.log("TYPEANDID:", typeAndId[1]);
 		let index;
 		for (let i = 0; i < tempArray.length; i++) {
 			if (tempArray[i].id === typeAndId[1]) {
-				console.log(tempArray[i].id);
 				index = i;
 			}
 		}
-		console.log("INDEX:", index);
-		console.log("DELETING:", tempArray[index]);
 		tempArray.splice(index, 1);
 		this.props.delComponent(tempArray);
 	}
@@ -120,12 +119,10 @@ class Palette extends Component {
 	}
 
 	renderStateComponents(e) {
-		// Is it really DRY enough having the same function in both Palette.js and Customizer.js?
+		// Is it really DRY enough having the same function in both Palette.js and Customize.js?
 		let toRender = [];
 
 		for (let i = 0; i < this.props.comp.length; i++) {
-			// console.log("ID: ", this.props.comp[i].id);
-			// console.log("TYPE: ", this.props.comp[i].type);
 			if (this.props.comp[i].type === "Header") {
 				toRender.push(
 					<Header
@@ -165,7 +162,6 @@ class Palette extends Component {
 					></Headline>
 				);
 			} else if (this.props.comp[i].type === "Text Area") {
-				console.log(this.props.comp[i].id);
 				toRender.push(
 					<TextArea
 						key={i}
@@ -191,7 +187,6 @@ class Palette extends Component {
 					></TextArea>
 				);
 			} else if (this.props.comp[i].type === "Image") {
-				console.log(this.props.comp[i].id);
 				toRender.push(
 					<Image
 						key={i}
@@ -273,17 +268,20 @@ class Palette extends Component {
 	}
 
 	render() {
-		let debugging = "";
-		for (let i = 0; i < this.props.comp.length; i++) {
-			// makes each element of the state.components array show up on the screen
-			debugging += this.props.comp[i].type;
-			debugging += this.props.comp[i].id;
-			debugging += " ";
-		}
+		// let debugging = "";
+		// for (let i = 0; i < this.props.comp.length; i++) {
+		// 	// makes each element of the state.components array show up on the screen
+		// 	debugging += this.props.comp[i].type;
+		// 	debugging += this.props.comp[i].id;
+		// 	debugging += " ";
+		// }
 
 		return (
 			<div>
-				<p>Debugging: {debugging}</p>
+				{/* <p>Debugging: {debugging}</p>
+				<p>Debugging, page: {this.props.pg}</p> */}
+
+				<h2>Select Your Custom Elements</h2>
 				<button onClick={e => this.addComponent(e)}>Header</button>
 				<button onClick={e => this.addComponent(e)}>Headline</button>
 				<button onClick={e => this.addComponent(e)}>Text Area</button>
@@ -291,7 +289,9 @@ class Palette extends Component {
 				<button onClick={e => this.addComponent(e)}>Email Field</button>
 				<button onClick={e => this.addComponent(e)}>Footer</button>
 				<div>{this.renderStateComponents()}</div>
-				<Link to="/customizer">Go To Next Step</Link>
+				<Link to="/customize">Go To Next Step</Link>
+
+				<p>Note: You lose your work if you refresh the page!</p>
 			</div>
 		);
 	}
@@ -299,7 +299,8 @@ class Palette extends Component {
 
 const mapStateToProps = state => {
 	return {
-		comp: state.components
+		comp: state.components,
+		pg: state.currentPage
 	};
 };
 
@@ -312,8 +313,10 @@ const mapDispatchToProps = dispatch => {
 		emailField: () => dispatch({ type: actionTypes.EMAIL_FIELD }),
 		footer: () => dispatch({ type: actionTypes.FOOTER }),
 		setNewComponents: newOrder =>
-			dispatch({ type: "SET_NEW", payload: newOrder }),
-		delComponent: del => dispatch({ type: "DEL", payload: del })
+			dispatch({ type: actionTypes.SET_NEW, payload: newOrder }),
+		delComponent: del => dispatch({ type: actionTypes.DEL, payload: del }),
+		setPage: page =>
+			dispatch({ type: actionTypes.PAGE_CHANGE, payload: page })
 	};
 };
 
