@@ -8,6 +8,8 @@
 
 <p>If you don't feel like doing that, just check out the code in <em>Palette.js, Customize.js, FinalPage.js, and reducer.js.</em> (The other files don't have nearly as much going on.)</p>
 
+<p>P.S.: If ANYONE can show me how to get rid of the "key" warnings that show in the console when my app renders, I'd be grateful. I tried a half dozen different solutions and none of them worked.</p>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
