@@ -13,24 +13,30 @@ import Footer from "./Copy/Footer";
 
 import * as actionTypes from "../store/constants";
 
-class Customize extends Component {
+class FinalPage extends Component {
+	state = {
+		domain: ""
+	};
+
 	componentDidMount() {
-		this.props.setPage(2);
+		this.props.setPage(3);
 		// console.log("[Customize.js] componentDidMount()");
 	}
 
 	renderStateComponents() {
 		// Is it really DRY enough having the same function in both Palette.js and Customize.js?
 		let toRender = [];
-		console.log("[Customize.js] renderStateComponents()]");
+		console.log("[FinalPage.js] renderStateComponents()]");
 
-		// FIXME: Still getting "index.js:1 Warning: Each child in a list should have a unique "key" prop."
 		for (let i = 0; i < this.props.comp.length; i++) {
+			// FIXME: this.props.comp sometimes starts as "undefined"
+
 			if (this.props.comp[i].type === "Header") {
+				// this.installComponent(this.props.comp, i);
 				// need this if block because toRender.push(<Header customText={this.props.copy[i].webCopy}></Header>)
 				// renders an error, "cannot get .webcopy property of undefined" or something like that w/o it
 				if (this.props.copy[i]) {
-					toRender.unshift(
+					toRender.push(
 						<div>
 							<Header
 								key={i}
@@ -40,38 +46,20 @@ class Customize extends Component {
 								// the customText property would render "cannot get .webcopy property of undefined"
 								customText={this.props.copy[i].webCopy}
 							></Header>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-							></input>
 						</div>
 					);
 				} else {
-					toRender.unshift(
+					toRender.push(
 						<div>
 							<Header
 								key={i}
 								uniqueId={this.props.comp[i].id}
 							></Header>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-							></input>
 						</div>
 					);
 				}
+
+				// TODO: Figure out how to upload the final page to its own website and call yourself a Made Man
 
 				// TODO: Repeatedly reassure yourself that this if statement fixes the Infinite Loop problem.
 				if (this.props.copy.length === 0) {
@@ -87,16 +75,6 @@ class Customize extends Component {
 								uniqueId={this.props.comp[i].id}
 								customText={this.props.copy[i].webCopy}
 							></Headline>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-							></input>
 						</div>
 					);
 				} else {
@@ -106,16 +84,6 @@ class Customize extends Component {
 								key={i}
 								uniqueId={this.props.comp[i].id}
 							></Headline>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-							></input>
 						</div>
 					);
 				}
@@ -131,16 +99,6 @@ class Customize extends Component {
 								uniqueId={this.props.comp[i].id}
 								customText={this.props.copy[i].webCopy}
 							></TextArea>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-							></input>
 						</div>
 					);
 				} else {
@@ -150,16 +108,6 @@ class Customize extends Component {
 								key={i}
 								uniqueId={this.props.comp[i].id}
 							></TextArea>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-							></input>
 						</div>
 					);
 				}
@@ -175,17 +123,6 @@ class Customize extends Component {
 								uniqueId={this.props.comp[i].id}
 								customText={this.props.copy[i].webCopy}
 							></Image>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-								placeholder={"Type your caption here..."}
-							></input>
 						</div>
 					);
 				} else {
@@ -195,17 +132,6 @@ class Customize extends Component {
 								key={i}
 								uniqueId={this.props.comp[i].id}
 							></Image>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-								placeholder={"Type your caption here..."}
-							></input>
 						</div>
 					);
 				}
@@ -226,10 +152,7 @@ class Customize extends Component {
 				if (this.props.copy.length === 0) {
 					this.props.getNewStateVariable(this.props.comp[i].id);
 				}
-			} else if (
-				this.props.comp[i].type === "Footer" &&
-				!this.props.comp.includes("Footer")
-			) {
+			} else if (this.props.comp[i].type === "Footer") {
 				if (this.props.copy[i]) {
 					toRender.push(
 						<div>
@@ -238,16 +161,6 @@ class Customize extends Component {
 								uniqueId={this.props.comp[i].id}
 								customText={this.props.copy[i].webCopy}
 							></Footer>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-							></input>
 						</div>
 					);
 				} else {
@@ -257,16 +170,6 @@ class Customize extends Component {
 								key={i}
 								uniqueId={this.props.comp[i].id}
 							></Footer>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-							></input>
 						</div>
 					);
 				}
@@ -279,15 +182,39 @@ class Customize extends Component {
 		return toRender;
 	}
 
+	handleChange = e => {
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	};
+
+	submitDomain = () => {
+		this.props.setURL(this.state.domain);
+	};
+
 	render() {
 		return (
 			<div>
-				<h2>Your Custom Elements: Enter Custom Text</h2>
+				<h2>Ready To Render, Now Select A Domain Name...</h2>
 
-				{this.renderStateComponents()}
-				<Link to="/">Back</Link>
+				<input
+					onChange={this.handleChange}
+					name="domain"
+					placeholder={"Choose a name for your site..."}
+				></input>
+
+				<button onClick={this.submitDomain}>Ready!</button>
+				<p>Pick a domain name like "YourNewSite" or "MyCoolProduct".</p>
+				{this.props.siteURL.length > 11 ? (
+					<Link to={this.props.siteURL}>Go To Your New Site</Link>
+				) : null}
 				<br />
-				<Link to="/finalpage">Go To Third Step</Link>
+				<h5>Here's How Your Website Will Look:</h5>
+				{this.renderStateComponents()}
+
+				<Link to="/customize">Back</Link>
+				<br />
+
 				<p>Note: You lose your work if you refresh the page!</p>
 			</div>
 		);
@@ -298,7 +225,8 @@ const mapStateToProps = state => {
 	return {
 		comp: state.components,
 		pg: state.currentPage,
-		copy: state.copy
+		copy: state.copy,
+		siteURL: state.siteURL
 	};
 };
 
@@ -306,14 +234,9 @@ const mapDispatchToProps = dispatch => {
 	return {
 		setPage: page =>
 			dispatch({ type: actionTypes.PAGE_CHANGE, payload: page }),
-		getNewStateVariable: stateId =>
-			dispatch({ type: actionTypes.NEW_VAR, payload: stateId }),
-		addCopy: (text, id) =>
-			dispatch({
-				type: actionTypes.ADD_COPY,
-				payload: [text, id]
-			})
+		setURL: domain =>
+			dispatch({ type: actionTypes.SET_URL, payload: domain })
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Customize);
+export default connect(mapStateToProps, mapDispatchToProps)(FinalPage);

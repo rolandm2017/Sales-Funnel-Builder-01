@@ -8,7 +8,10 @@ const header = props => {
 
 	return (
 		<div>
-			<p>Header</p>
+			{props.customText ? <h3>{props.customText}</h3> : <h3>Header</h3>}
+			{/* {props.pg === 1 ? <h3>Header</h3> : null}
+			{props.pg === 2 ? <h3>Header: {props.customText}</h3> : null}
+			{props.pg === 3 ? <h3>{props.customText}</h3> : null} */}
 			{props.pg === 1 ? (
 				<button onClick={props.del}>Remove Header</button>
 			) : null}

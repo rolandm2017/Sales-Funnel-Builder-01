@@ -14,19 +14,16 @@ import Footer from "./Copy/Footer";
 import * as actionTypes from "../store/constants";
 
 class Palette extends Component {
-	// TODO: Add removeFooter and removeHeader methods
-	// TODO: Make sure the Header always loads at the Top and Footer always loads at the Bottom
-	// TODO: Make sure you can only have ONE Header & Footer
-
-	// TODO: Add button that FWDs us to the next page where you can set custom text in each element
-
 	componentDidMount() {
 		this.props.setPage(1);
 	}
 
 	addComponent(e) {
 		// starts the process of rendering a component to the DOM
-		if (e.target.innerHTML === "Header") {
+		const headerArray = this.props.comp.filter(x => x.type === "Header");
+		const footerArray = this.props.comp.filter(x => x.type === "Footer");
+
+		if (e.target.innerHTML === "Header" && headerArray.length < 1) {
 			// Redux dispatch methods
 			this.props.header();
 		} else if (e.target.innerHTML === "Headline") {
@@ -37,8 +34,10 @@ class Palette extends Component {
 			this.props.image();
 		} else if (e.target.innerHTML === "Email Field") {
 			this.props.emailField();
-		} else if (e.target.innerHTML === "Footer") {
+		} else if (e.target.innerHTML === "Footer" && footerArray.length < 1) {
 			this.props.footer();
+		} else {
+			console.log("Error: Can only add one header/footer component");
 		}
 	}
 
@@ -124,8 +123,6 @@ class Palette extends Component {
 		let toRender = [];
 
 		for (let i = 0; i < this.props.comp.length; i++) {
-			// console.log("ID: ", this.props.comp[i].id);
-			// console.log("TYPE: ", this.props.comp[i].type);
 			if (this.props.comp[i].type === "Header") {
 				toRender.push(
 					<Header
@@ -271,18 +268,18 @@ class Palette extends Component {
 	}
 
 	render() {
-		let debugging = "";
-		for (let i = 0; i < this.props.comp.length; i++) {
-			// makes each element of the state.components array show up on the screen
-			debugging += this.props.comp[i].type;
-			debugging += this.props.comp[i].id;
-			debugging += " ";
-		}
+		// let debugging = "";
+		// for (let i = 0; i < this.props.comp.length; i++) {
+		// 	// makes each element of the state.components array show up on the screen
+		// 	debugging += this.props.comp[i].type;
+		// 	debugging += this.props.comp[i].id;
+		// 	debugging += " ";
+		// }
 
 		return (
 			<div>
-				<p>Debugging: {debugging}</p>
-				<p>Debugging, page: {this.props.pg}</p>
+				{/* <p>Debugging: {debugging}</p>
+				<p>Debugging, page: {this.props.pg}</p> */}
 
 				<h2>Select Your Custom Elements</h2>
 				<button onClick={e => this.addComponent(e)}>Header</button>
@@ -293,6 +290,8 @@ class Palette extends Component {
 				<button onClick={e => this.addComponent(e)}>Footer</button>
 				<div>{this.renderStateComponents()}</div>
 				<Link to="/customize">Go To Next Step</Link>
+
+				<p>Note: You lose your work if you refresh the page!</p>
 			</div>
 		);
 	}

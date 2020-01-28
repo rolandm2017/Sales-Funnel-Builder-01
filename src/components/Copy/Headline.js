@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 const headline = props => {
 	return (
 		<div>
-			<h1>Headline</h1>
+			{props.customText ? <h1>{props.customText}</h1> : <h1>Headline</h1>}
 			{props.pg === 1 ? (
 				<div>
 					<button onClick={props.moveUp}>Move Section Up</button>
