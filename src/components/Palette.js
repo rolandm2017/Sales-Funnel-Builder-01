@@ -291,7 +291,7 @@ class Palette extends Component {
 				<div>{this.renderStateComponents()}</div>
 				<Link to="/customize">Go To Next Step</Link>
 
-				<p>Note: You lose your work if you refresh the page!</p>
+				{/* <p>Note: You lose your work if you refresh the page!</p> */}
 			</div>
 		);
 	}

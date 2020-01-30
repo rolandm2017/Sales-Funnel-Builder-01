@@ -59,8 +59,6 @@ class FinalPage extends Component {
 					);
 				}
 
-				// TODO: Figure out how to upload the final page to its own website and call yourself a Made Man
-
 				// TODO: Repeatedly reassure yourself that this if statement fixes the Infinite Loop problem.
 				if (this.props.copy.length === 0) {
 					// assigns a unique ID to each piece of copy entered into database
@@ -215,7 +213,7 @@ class FinalPage extends Component {
 				<Link to="/customize">Back</Link>
 				<br />
 
-				<p>Note: You lose your work if you refresh the page!</p>
+				{/* <p>Note: You lose your work if you refresh the page!</p> */}
 			</div>
 		);
 	}

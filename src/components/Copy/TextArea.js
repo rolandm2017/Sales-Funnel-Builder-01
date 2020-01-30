@@ -1,25 +1,45 @@
 import React, { Component } from "react";
 
-class TextArea extends Component {
-	setCopy(e) {
-		// console.log(e.target.value);
-		console.log(this.props);
-		// this.setState({ copy: e.target.value });
-	}
+import { connect } from "react-redux";
 
-	// TODO: Link to state.copy property in placeholder text
+class TextArea extends Component {
 	render() {
 		return (
 			<div>
-				<p>Type your copy here</p>
-				<input onChange={e => this.setCopy(e)}></input>
-				<p>Placeholder Text</p>
-				<button onClick={this.props.moveUp}>Move Section Up</button>
-				<button onClick={this.props.moveDown}>Move Section Down</button>
-				<button onClick={this.props.del}>Delete Section</button>
+				{this.props.customText ? (
+					this.props.customText
+				) : (
+					<p>Text Area: Your Copy Goes Here</p>
+				)}
+
+				{this.props.pg === 1 ? (
+					<div>
+						<button onClick={this.props.moveUp}>
+							Move Section Up
+						</button>
+						<button onClick={this.props.moveDown}>
+							Move Section Down
+						</button>
+						<button onClick={this.props.del}>Delete Section</button>
+					</div>
+				) : null}
 			</div>
 		);
 	}
 }
 
-export default TextArea;
+const mapStateToProps = state => {
+	return {
+		comp: state.components,
+		pg: state.currentPage,
+		copy: state.copy
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		setStateCopy: copy => dispatch({ type: "SET_COPY", payload: copy })
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TextArea);

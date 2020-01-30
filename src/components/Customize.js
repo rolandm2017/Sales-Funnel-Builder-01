@@ -288,7 +288,7 @@ class Customize extends Component {
 				<Link to="/">Back</Link>
 				<br />
 				<Link to="/finalpage">Go To Third Step</Link>
-				<p>Note: You lose your work if you refresh the page!</p>
+				{/* <p>Note: You lose your work if you refresh the page!</p> */}
 			</div>
 		);
 	}
