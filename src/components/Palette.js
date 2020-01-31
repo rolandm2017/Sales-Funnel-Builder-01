@@ -16,6 +16,7 @@ import * as actionTypes from "../store/constants";
 class Palette extends Component {
 	componentDidMount() {
 		this.props.setPage(1);
+		document.title = "Sales Funnel Builder";
 	}
 
 	addComponent(e) {
@@ -56,6 +57,7 @@ class Palette extends Component {
 	moveUp(typeAndId) {
 		// typeAndId is an array where
 		// typeAndId[0] === componentType & typeAndId[1] === componentUniqueId
+		console.log(typeAndId);
 
 		// return a new array of the state.components state to work with
 		let tempArray = [...this.props.comp];
@@ -85,6 +87,7 @@ class Palette extends Component {
 		tempArray[index - 1] = tempArray[index];
 		tempArray[index] = movingDown;
 
+		console.table(tempArray);
 		this.props.setNewComponents(tempArray);
 	}
 

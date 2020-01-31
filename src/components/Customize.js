@@ -16,6 +16,8 @@ import * as actionTypes from "../store/constants";
 class Customize extends Component {
 	componentDidMount() {
 		this.props.setPage(2);
+		document.title = "Sales Funnel Builder";
+
 		// console.log("[Customize.js] componentDidMount()");
 	}
 
@@ -26,6 +28,8 @@ class Customize extends Component {
 
 		// FIXME: Still getting "index.js:1 Warning: Each child in a list should have a unique "key" prop."
 		for (let i = 0; i < this.props.comp.length; i++) {
+			console.log("Component State:", this.props.comp);
+			//
 			if (this.props.comp[i].type === "Header") {
 				// need this if block because toRender.push(<Header customText={this.props.copy[i].webCopy}></Header>)
 				// renders an error, "cannot get .webcopy property of undefined" or something like that w/o it
@@ -50,6 +54,16 @@ class Customize extends Component {
 									)
 								}
 							></input>
+							<p>DEBUGGING:</p>
+
+							<p>Component ID: {this.props.comp[i].id}</p>
+							<p>
+								Iterating over: {i}th component,
+								this.props.comp[i].
+							</p>
+							<p>
+								customText will receive: {this.props.comp[i].id}
+							</p>
 						</div>
 					);
 				} else {
@@ -69,6 +83,16 @@ class Customize extends Component {
 									)
 								}
 							></input>
+							<p>DEBUGGING:</p>
+
+							<p>Component ID: {this.props.comp[i].id}</p>
+							<p>
+								Iterating over: {i}th component,
+								this.props.comp[i].
+							</p>
+							<p>
+								customText will receive: {this.props.comp[i].id}
+							</p>
 						</div>
 					);
 				}
@@ -97,6 +121,15 @@ class Customize extends Component {
 									)
 								}
 							></input>
+							<p>DEBUGGING:</p>
+							<p>Component ID: {this.props.comp[i].id}</p>
+							<p>
+								Iterating over: {i}th component,
+								this.props.comp[i].
+							</p>
+							<p>
+								customText will receive: {this.props.comp[i].id}
+							</p>
 						</div>
 					);
 				} else {
@@ -116,6 +149,15 @@ class Customize extends Component {
 									)
 								}
 							></input>
+							<p>DEBUGGING:</p>
+							<p>Component ID: {this.props.comp[i].id}</p>
+							<p>
+								Iterating over: {i}th component,
+								this.props.comp[i].
+							</p>
+							<p>
+								customText will receive: {this.props.comp[i].id}
+							</p>
 						</div>
 					);
 				}
@@ -141,6 +183,15 @@ class Customize extends Component {
 									)
 								}
 							></input>
+							<p>DEBUGGING:</p>
+							<p>Component ID: {this.props.comp[i].id}</p>
+							<p>
+								Iterating over: {i}th component,
+								this.props.comp[i].
+							</p>
+							<p>
+								customText will receive: {this.props.comp[i].id}
+							</p>
 						</div>
 					);
 				} else {
@@ -160,6 +211,15 @@ class Customize extends Component {
 									)
 								}
 							></input>
+							<p>DEBUGGING:</p>
+							<p>Component ID: {this.props.comp[i].id}</p>
+							<p>
+								Iterating over: {i}th component,
+								this.props.comp[i].
+							</p>
+							<p>
+								customText will receive: {this.props.comp[i].id}
+							</p>
 						</div>
 					);
 				}

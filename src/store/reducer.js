@@ -197,7 +197,6 @@ const reducer = (state = initialState, action) => {
 					tempCopy[i] = { webCopy: textToAdd, id: indexToFind };
 				}
 			}
-			console.log("tempCopy:", tempCopy);
 			return {
 				components: stateArray,
 				uniqueIdCounter: state.uniqueIdCounter,
