@@ -25,91 +25,42 @@ class Palette extends Component {
 		const footerArray = this.props.comp.filter(x => x.type === "Footer");
 
 		// .pop the last entry in this.props.copy and use the .id property to go .id+1 and feed in a new value
-
+		let nextCopyId;
+		if (this.props.copy.length > 0) {
+			nextCopyId = this.props.copy.pop().id + 1;
+		}
 		if (e.target.innerHTML === "Header" && headerArray.length < 1) {
 			// Redux dispatch methods
 
-			// Implementing a fix for "TypeError: Cannot read property 'id' of undefined" on typing in input field
-			// this if statement checks if we need to modify the .copy state property
-			if (this.props.comp.length > this.props.copy.length) {
-				// let copyIds = [];
-				// for (let i = this.props.copy.length; i < this.props.comp.length; i++) {}
-				let nextCopyId = 0;
-				console.log("compare:", this.props.copy !== []);
-				if (this.props.copy.length > 0) {
-					console.log("goose:", this.props.copy[0]);
-					nextCopyId = this.props.copy.pop().id + 1;
-				}
-				console.log(nextCopyId);
-				this.props.header(nextCopyId);
-			} else {
-				this.props.header();
-			}
+			// // Implementing a fix for "TypeError: Cannot read property 'id' of undefined" on typing in input field
+			// // this if statement checks if we need to modify the .copy state property
+			// if (this.props.comp.length > this.props.copy.length) {
+			// 	// let copyIds = [];
+			// 	// for (let i = this.props.copy.length; i < this.props.comp.length; i++) {}
+			// 	let nextCopyId = 0;
+			// 	console.log("compare:", this.props.copy !== []);
+			// 	if (this.props.copy.length > 0) {
+			// 		console.log("goose:", this.props.copy[0]);
+			// 		nextCopyId = this.props.copy.pop().id + 1;
+			// 	}
+			// 	console.log(nextCopyId);
+			// 	this.props.header(nextCopyId);
+			// } else {
+			// 	this.props.header();
+			// }
 
-			// NOTE: before Fix was implenented, this if block simply read: "this.props.header()"
+			// // NOTE: before Fix was implenented, this if block simply read: "this.props.header()"
+			this.props.addComp("Header", nextCopyId);
 		} else if (e.target.innerHTML === "Headline") {
-			if (this.props.comp.length > this.props.copy.length) {
-				let nextCopyId = 0;
-				console.log("compare:", this.props.copy !== []);
-
-				if (this.props.copy.length > 0) {
-					console.log("goose:", this.props.copy[0]);
-					nextCopyId = this.props.copy.pop().id + 1;
-				}
-				console.log(nextCopyId);
-				this.props.headline(nextCopyId);
-			} else {
-				this.props.headline();
-			}
-			//
+			this.props.addComp("Headline", nextCopyId);
 		} else if (e.target.innerHTML === "Text Area") {
-			if (this.props.comp.length > this.props.copy.length) {
-				let nextCopyId = 0;
-				if (this.props.copy.length > 0) {
-					console.log("goose:", this.props.copy[0]);
-					nextCopyId = this.props.copy.pop().id + 1;
-				}
-				console.log(nextCopyId);
-				this.props.textArea(nextCopyId);
-			} else {
-				this.props.textArea();
-			}
-			//
+			this.props.addComp("Text Area", nextCopyId);
 		} else if (e.target.innerHTML === "Image") {
-			if (this.props.comp.length > this.props.copy.length) {
-				let nextCopyId = 0;
-				if (this.props.copy !== []) {
-					nextCopyId = this.props.copy.pop().id + 1;
-				}
-				console.log(nextCopyId);
-				this.props.image(nextCopyId);
-			} else {
-				this.props.image();
-			}
-			//
+			this.props.addComp("Image", nextCopyId);
 		} else if (e.target.innerHTML === "Email Field") {
-			if (this.props.comp.length > this.props.copy.length) {
-				let nextCopyId = 0;
-				if (this.props.copy !== []) {
-					nextCopyId = this.props.copy.pop().id + 1;
-				}
-				console.log(nextCopyId);
-				this.props.emailField(nextCopyId);
-			} else {
-				this.props.emailField();
-			}
-			//
+			this.props.addComp("Email Field", nextCopyId);
 		} else if (e.target.innerHTML === "Footer" && footerArray.length < 1) {
-			if (this.props.comp.length > this.props.copy.length) {
-				let nextCopyId = 0;
-				if (this.props.copy !== []) {
-					nextCopyId = this.props.copy.pop().id + 1;
-				}
-				console.log(nextCopyId);
-				this.props.footer(nextCopyId);
-			} else {
-				this.props.footer();
-			}
+			this.props.addComp("Footer", nextCopyId);
 		} else {
 			console.log("Error: Can only add one header/footer component");
 		}
@@ -383,13 +334,16 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		header: id => dispatch({ type: actionTypes.HEADER, payload: id }),
-		headline: id => dispatch({ type: actionTypes.HEADLINE, payload: id }),
-		textArea: id => dispatch({ type: actionTypes.TEXT_AREA, payload: id }),
-		image: id => dispatch({ type: actionTypes.IMAGE, payload: id }),
-		emailField: id =>
-			dispatch({ type: actionTypes.EMAIL_FIELD, payload: id }),
-		footer: id => dispatch({ type: actionTypes.FOOTER, payload: id }),
+		// header: id => dispatch({ type: actionTypes.HEADER, payload: id }),
+		// headline: id => dispatch({ type: actionTypes.HEADLINE, payload: id }),
+		// textArea: id => dispatch({ type: actionTypes.TEXT_AREA, payload: id }),
+		// image: id => dispatch({ type: actionTypes.IMAGE, payload: id }),
+		// emailField: id =>
+		// 	dispatch({ type: actionTypes.EMAIL_FIELD, payload: id }),
+		// footer: id => dispatch({ type: actionTypes.FOOTER, payload: id }),
+		addComp: (component, id) => dispatch({
+			type: actionTypes.ADD_COMPONENT, payload: [component, id]
+		})
 		setNewComponents: newOrder =>
 			dispatch({ type: actionTypes.SET_NEW, payload: newOrder }),
 		delComponent: del => dispatch({ type: actionTypes.DEL, payload: del }),

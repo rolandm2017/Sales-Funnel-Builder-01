@@ -32,146 +32,19 @@ let moveFooter = components => {
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-		case actionTypes.HEADER:
-			// this if statement helps fix a bug, "TypeError: Cannot read property 'id' of undefined"
-			// by adding a Copy Object to the state
-			if (Number.isInteger(action.payload)) {
-				console.log("ACTION.PAYLOAD", action.payload);
-				stateArray = [...state.components];
-				component = "Header";
-				stateArray.unshift({
-					type: component,
-					id: state.uniqueIdCounter
-				});
-				stateArray = moveFooter(stateArray);
-				idIteration = state.uniqueIdCounter + 1;
-
-				// add copy object
-				tempCopy = [...state.copy];
-				tempCopy.push({ webCopy: "", id: action.payload });
-
-				return {
-					// Step 2 in updating the list of components with a new component
-					components: stateArray,
-					uniqueIdCounter: idIteration,
-					currentPage: state.currentPage,
-					copy: tempCopy,
-					siteURL: state.siteURL
-				};
-			} else {
-				console.log("Reducer: Header", action.payload);
-
-				stateArray = [...state.components];
-				component = "Header";
-				// Step 1 in updating the list of components with a new component
-				stateArray.unshift({
-					type: component,
-					id: state.uniqueIdCounter
-				});
-				stateArray = moveFooter(stateArray);
-
-				idIteration = state.uniqueIdCounter + 1;
-				return {
-					// Step 2 in updating the list of components with a new component
-					components: stateArray,
-					uniqueIdCounter: idIteration,
-					currentPage: state.currentPage,
-					copy: state.copy,
-					siteURL: state.siteURL
-				};
-			}
-		case actionTypes.HEADLINE:
-			if (Number.isInteger(action.payload)) {
-				console.log("ACTION.PAYLOAD", action.payload);
-				stateArray = [...state.components];
-				component = "Headline";
-				stateArray.push({
-					type: component,
-					id: state.uniqueIdCounter,
-					currentPage: state.currentPage,
-					copy: state.copy,
-					siteURL: state.siteURL
-				});
-				stateArray = moveFooter(stateArray);
-				idIteration = state.uniqueIdCounter + 1;
-
-				// add copy object
-				tempCopy = [...state.copy];
-				tempCopy.push({ webCopy: "", id: action.payload });
-
-				return {
-					components: stateArray,
-					uniqueIdCounter: idIteration,
-					currentPage: state.currentPage,
-					copy: tempCopy,
-					siteURL: state.siteURL
-				};
-			} else {
-				console.log("Reducer: Headline", action.payload);
-				stateArray = [...state.components];
-				component = "Headline";
-				stateArray.push({
-					type: component,
-					id: state.uniqueIdCounter,
-					currentPage: state.currentPage,
-					copy: state.copy,
-					siteURL: state.siteURL
-				});
-				stateArray = moveFooter(stateArray);
-				idIteration = state.uniqueIdCounter + 1;
-				return {
-					components: stateArray,
-					uniqueIdCounter: idIteration,
-					currentPage: state.currentPage,
-					copy: state.copy,
-					siteURL: state.siteURL
-				};
-			}
-		case actionTypes.TEXT_AREA:
-			if (Number.isInteger(action.payload)) {
-				console.log("ACTION.PAYLOAD", action.payload);
-				stateArray = [...state.components];
-				component = "Text Area";
-				stateArray.push({ type: component, id: state.uniqueIdCounter });
-				stateArray = moveFooter(stateArray);
-				idIteration = state.uniqueIdCounter + 1;
-
-				// add copy object
-				tempCopy = [...state.copy];
-				tempCopy.push({ webCopy: "", id: action.payload });
-
-				return {
-					components: stateArray,
-					uniqueIdCounter: idIteration,
-					currentPage: state.currentPage,
-					copy: tempCopy,
-					siteURL: state.siteURL
-				};
-			} else {
-				console.log("Reducer: Text Area", action.payload);
-				stateArray = [...state.components];
-				component = "Text Area";
-				stateArray.push({ type: component, id: state.uniqueIdCounter });
-				stateArray = moveFooter(stateArray);
-				idIteration = state.uniqueIdCounter + 1;
-				return {
-					components: stateArray,
-					uniqueIdCounter: idIteration,
-					currentPage: state.currentPage,
-					copy: state.copy,
-					siteURL: state.siteURL
-				};
-			}
-		case actionTypes.IMAGE:
+		case actionTypes.ADD_COMPONENT:
 			stateArray = [...state.components];
-			component = "Image";
-			stateArray.push({
+			component = "Header";
+			// Step 1 in updating the list of components with a new component
+			stateArray.unshift({
 				type: component,
 				id: state.uniqueIdCounter
 			});
 			stateArray = moveFooter(stateArray);
+
 			idIteration = state.uniqueIdCounter + 1;
 			return {
+				// Step 2 in updating the list of components with a new component
 				components: stateArray,
 				uniqueIdCounter: idIteration,
 				currentPage: state.currentPage,
@@ -179,49 +52,139 @@ const reducer = (state = initialState, action) => {
 				siteURL: state.siteURL
 			};
 
-		case actionTypes.EMAIL_FIELD:
-			stateArray = [...state.components];
-			component = "Email Field";
-			stateArray.push({
-				type: component,
-				id: state.uniqueIdCounter,
-				currentPage: state.currentPage,
-				copy: state.copy,
-				siteURL: state.siteURL
-			});
-			stateArray = moveFooter(stateArray);
-			idIteration = state.uniqueIdCounter + 1;
-			return {
-				components: stateArray,
-				uniqueIdCounter: idIteration,
-				currentPage: state.currentPage,
-				copy: state.copy,
-				siteURL: state.siteURL
-			};
-		case actionTypes.FOOTER:
-			stateArray = [...state.components];
-			component = "Footer";
-			stateArray.push({
-				type: component,
-				id: state.uniqueIdCounter,
-				currentPage: state.currentPage,
-				copy: state.copy,
-				siteURL: state.siteURL
-			});
-			stateArray = moveFooter(stateArray);
-			idIteration = state.uniqueIdCounter + 1;
-			return {
-				components: stateArray,
-				uniqueIdCounter: idIteration,
-				currentPage: state.currentPage,
-				copy: state.copy,
-				siteURL: state.siteURL
-			};
-		// // The simple Old Version
-		// let footerArray = [...state.components, "Footer"];
-		// return {
-		// 	components: footerArray
-		// };
+		// case actionTypes.HEADER:
+		// 	// // this if statement helps fix a bug, "TypeError: Cannot read property 'id' of undefined"
+		// 	// // by adding a Copy Object to the state
+		// 	// if (Number.isInteger(action.payload)) {
+		// 	// 	console.log("ACTION.PAYLOAD", action.payload);
+		// 	// 	stateArray = [...state.components];
+		// 	// 	component = "Header";
+		// 	// 	stateArray.unshift({
+		// 	// 		type: component,
+		// 	// 		id: state.uniqueIdCounter
+		// 	// 	});
+		// 	// 	stateArray = moveFooter(stateArray);
+		// 	// 	idIteration = state.uniqueIdCounter + 1;
+
+		// 	// 	// add copy object
+		// 	// 	tempCopy = [...state.copy];
+		// 	// 	tempCopy.push({ webCopy: "", id: action.payload });
+
+		// 	// 	return {
+		// 	// 		// Step 2 in updating the list of components with a new component
+		// 	// 		components: stateArray,
+		// 	// 		uniqueIdCounter: idIteration,
+		// 	// 		currentPage: state.currentPage,
+		// 	// 		copy: tempCopy,
+		// 	// 		siteURL: state.siteURL
+		// 	// 	};
+		// 	// }
+		// 	stateArray = [...state.components];
+		// 	component = "Header";
+		// 	// Step 1 in updating the list of components with a new component
+		// 	stateArray.unshift({
+		// 		type: component,
+		// 		id: state.uniqueIdCounter
+		// 	});
+		// 	stateArray = moveFooter(stateArray);
+
+		// 	idIteration = state.uniqueIdCounter + 1;
+		// 	return {
+		// 		// Step 2 in updating the list of components with a new component
+		// 		components: stateArray,
+		// 		uniqueIdCounter: idIteration,
+		// 		currentPage: state.currentPage,
+		// 		copy: state.copy,
+		// 		siteURL: state.siteURL
+		// 	};
+		// case actionTypes.HEADLINE:
+		// 	stateArray = [...state.components];
+		// 	component = "Headline";
+		// 	stateArray.push({
+		// 		type: component,
+		// 		id: state.uniqueIdCounter,
+		// 		currentPage: state.currentPage,
+		// 		copy: state.copy,
+		// 		siteURL: state.siteURL
+		// 	});
+		// 	stateArray = moveFooter(stateArray);
+		// 	idIteration = state.uniqueIdCounter + 1;
+		// 	return {
+		// 		components: stateArray,
+		// 		uniqueIdCounter: idIteration,
+		// 		currentPage: state.currentPage,
+		// 		copy: state.copy,
+		// 		siteURL: state.siteURL
+		// 	};
+		// case actionTypes.TEXT_AREA:
+		// 	stateArray = [...state.components];
+		// 	component = "Text Area";
+		// 	stateArray.push({ type: component, id: state.uniqueIdCounter });
+		// 	stateArray = moveFooter(stateArray);
+		// 	idIteration = state.uniqueIdCounter + 1;
+		// 	return {
+		// 		components: stateArray,
+		// 		uniqueIdCounter: idIteration,
+		// 		currentPage: state.currentPage,
+		// 		copy: state.copy,
+		// 		siteURL: state.siteURL
+		// 	};
+		// case actionTypes.IMAGE:
+		// 	stateArray = [...state.components];
+		// 	component = "Image";
+		// 	stateArray.push({
+		// 		type: component,
+		// 		id: state.uniqueIdCounter
+		// 	});
+		// 	stateArray = moveFooter(stateArray);
+		// 	idIteration = state.uniqueIdCounter + 1;
+		// 	return {
+		// 		components: stateArray,
+		// 		uniqueIdCounter: idIteration,
+		// 		currentPage: state.currentPage,
+		// 		copy: state.copy,
+		// 		siteURL: state.siteURL
+		// 	};
+
+		// case actionTypes.EMAIL_FIELD:
+		// 	stateArray = [...state.components];
+		// 	component = "Email Field";
+		// 	stateArray.push({
+		// 		type: component,
+		// 		id: state.uniqueIdCounter,
+		// 		currentPage: state.currentPage,
+		// 		copy: state.copy,
+		// 		siteURL: state.siteURL
+		// 	});
+		// 	stateArray = moveFooter(stateArray);
+		// 	idIteration = state.uniqueIdCounter + 1;
+		// 	return {
+		// 		components: stateArray,
+		// 		uniqueIdCounter: idIteration,
+		// 		currentPage: state.currentPage,
+		// 		copy: state.copy,
+		// 		siteURL: state.siteURL
+		// 	};
+		// case actionTypes.FOOTER:
+		// 	stateArray = [...state.components];
+		// 	component = "Footer";
+		// 	stateArray.push({
+		// 		type: component,
+		// 		id: state.uniqueIdCounter,
+		// 		currentPage: state.currentPage,
+		// 		copy: state.copy,
+		// 		siteURL: state.siteURL
+		// 	});
+		// 	stateArray = moveFooter(stateArray);
+		// 	idIteration = state.uniqueIdCounter + 1;
+		// 	return {
+		// 		components: stateArray,
+		// 		uniqueIdCounter: idIteration,
+		// 		currentPage: state.currentPage,
+		// 		copy: state.copy,
+		// 		siteURL: state.siteURL
+		// 	};
+
 		case actionTypes.SET_NEW:
 			// uploads the newly reordered set of components to state
 			let uploadNewOrder = [...action.payload];
