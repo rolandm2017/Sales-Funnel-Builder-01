@@ -188,11 +188,9 @@ const reducer = (state = initialState, action) => {
 			let newInputFieldNumber = { webCopy: "", id: action.payload };
 			tempCopy.push(newInputFieldNumber);
 			return {
+				...state,
 				components: stateArray,
-				uniqueIdCounter: state.uniqueIdCounter,
-				currentPage: state.currentPage,
-				copy: tempCopy,
-				siteURL: state.siteURL
+				copy: tempCopy
 			};
 		case actionTypes.ADD_COPY:
 			tempCopy = [...state.copy]; // immutably copy state.copy
@@ -206,11 +204,9 @@ const reducer = (state = initialState, action) => {
 				}
 			}
 			return {
+				...state,
 				components: stateArray,
-				uniqueIdCounter: state.uniqueIdCounter,
-				currentPage: state.currentPage,
-				copy: tempCopy,
-				siteURL: state.siteURL
+				copy: tempCopy
 			};
 		case actionTypes.SET_URL:
 			stateArray = [...state.components];
@@ -234,10 +230,8 @@ const reducer = (state = initialState, action) => {
 				}
 			}
 			return {
+				...state,
 				components: stateArray,
-				uniqueIdCounter: state.uniqueIdCounter,
-				currentPage: state.currentPage,
-				copy: state.copy,
 				siteURL: "/salespage/" + domain
 			};
 
