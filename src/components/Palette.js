@@ -25,7 +25,7 @@ class Palette extends Component {
 		const footerArray = this.props.comp.filter(x => x.type === "Footer");
 
 		// .pop the last entry in this.props.copy and use the .id property to go .id+1 and feed in a new value
-		let nextCopyId;
+		let nextCopyId = 0;
 		if (this.props.copy.length > 0) {
 			nextCopyId = this.props.copy.pop().id + 1;
 		}
@@ -341,9 +341,11 @@ const mapDispatchToProps = dispatch => {
 		// emailField: id =>
 		// 	dispatch({ type: actionTypes.EMAIL_FIELD, payload: id }),
 		// footer: id => dispatch({ type: actionTypes.FOOTER, payload: id }),
-		addComp: (component, id) => dispatch({
-			type: actionTypes.ADD_COMPONENT, payload: [component, id]
-		})
+		addComp: (component, id) =>
+			dispatch({
+				type: actionTypes.ADD_COMPONENT,
+				payload: [component, id]
+			}),
 		setNewComponents: newOrder =>
 			dispatch({ type: actionTypes.SET_NEW, payload: newOrder }),
 		delComponent: del => dispatch({ type: actionTypes.DEL, payload: del }),

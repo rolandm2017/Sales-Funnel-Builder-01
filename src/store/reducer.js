@@ -13,72 +13,46 @@ const initialState = {
 	siteURL: "/salespage/"
 };
 
-// TODO: make ONLY one header and footer addable. Doesn't make sense to have multiple as they are unique!
-
-let moveFooter = components => {
-	// Purpose: Moves the footer component to the end of the array if it is in the components list.
-	// Step One: Remove all instances of the Footer component from the array.
-	const withoutFooter = components.filter(x => x.type !== "Footer");
-	// Step Two: If there was no Footer component in the array, return the array we started with.
-	if (components.length === withoutFooter.length) {
-		return components;
-	}
-	// Step Three: Get the footer component to add to the end of the filtered array
-	const footer = components.filter(x => x.type === "Footer");
-	// Step Four: Self explanatory. Add Footer component back to the end of the array.
-	withoutFooter.push(footer[0]);
-	return withoutFooter;
-};
-
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case actionTypes.ADD_COMPONENT:
 			stateArray = [...state.components];
-			component = "Header";
-			// Step 1 in updating the list of components with a new component
-			stateArray.unshift({
-				type: component,
-				id: state.uniqueIdCounter
-			});
-			stateArray = moveFooter(stateArray);
-
+			console.log("state:", state);
+			console.log("State Copy:", state.copy);
+			component = action.payload[0]; // will be "Header", "Headline", "Text Area", "Image", "Email Field", "Footer"
+			if (component === "Header") {
+				// append "Header" component to the beginning of the list
+				stateArray.unshift({
+					type: component,
+					id: state.uniqueIdCounter
+				});
+			} else {
+				// push component to the end of the list
+				stateArray.push({
+					type: component,
+					id: state.uniqueIdCounter
+				});
+			}
 			idIteration = state.uniqueIdCounter + 1;
+
+			// add copy object
+			tempCopy = [...state.copy];
+			tempCopy.push({ webCopy: "", id: action.payload[1] });
+
 			return {
-				// Step 2 in updating the list of components with a new component
+				...state,
 				components: stateArray,
 				uniqueIdCounter: idIteration,
-				currentPage: state.currentPage,
-				copy: state.copy,
-				siteURL: state.siteURL
+				copy: tempCopy
 			};
 
 		// case actionTypes.HEADER:
-		// 	// // this if statement helps fix a bug, "TypeError: Cannot read property 'id' of undefined"
-		// 	// // by adding a Copy Object to the state
-		// 	// if (Number.isInteger(action.payload)) {
-		// 	// 	console.log("ACTION.PAYLOAD", action.payload);
-		// 	// 	stateArray = [...state.components];
-		// 	// 	component = "Header";
-		// 	// 	stateArray.unshift({
-		// 	// 		type: component,
-		// 	// 		id: state.uniqueIdCounter
-		// 	// 	});
-		// 	// 	stateArray = moveFooter(stateArray);
-		// 	// 	idIteration = state.uniqueIdCounter + 1;
+		// 	// this if statement helps fix a bug, "TypeError: Cannot read property 'id' of undefined"
+		// 	// by adding a Copy Object to the state
+		// 	if (Number.isInteger(action.payload)) {
+		// 		console.log("ACTION.PAYLOAD", action.payload);
 
-		// 	// 	// add copy object
-		// 	// 	tempCopy = [...state.copy];
-		// 	// 	tempCopy.push({ webCopy: "", id: action.payload });
-
-		// 	// 	return {
-		// 	// 		// Step 2 in updating the list of components with a new component
-		// 	// 		components: stateArray,
-		// 	// 		uniqueIdCounter: idIteration,
-		// 	// 		currentPage: state.currentPage,
-		// 	// 		copy: tempCopy,
-		// 	// 		siteURL: state.siteURL
-		// 	// 	};
-		// 	// }
+		// 	}
 		// 	stateArray = [...state.components];
 		// 	component = "Header";
 		// 	// Step 1 in updating the list of components with a new component
@@ -189,31 +163,22 @@ const reducer = (state = initialState, action) => {
 			// uploads the newly reordered set of components to state
 			let uploadNewOrder = [...action.payload];
 			return {
-				components: uploadNewOrder,
-				uniqueIdCounter: state.uniqueIdCounter,
-				currentPage: state.currentPage,
-				copy: state.copy,
-				siteURL: state.siteURL
+				...state,
+				components: uploadNewOrder
 			};
 		case actionTypes.DEL:
 			// uploads the state less the deleted item
 			let uploadShortened = [...action.payload];
 			return {
-				components: uploadShortened,
-				uniqueIdCounter: state.uniqueIdCounter,
-				currentPage: state.currentPage,
-				copy: state.copy,
-				siteURL: state.siteURL
+				...state,
+				components: uploadShortened
 			};
 		case actionTypes.PAGE_CHANGE:
 			stateArray = [...state.components];
 			return {
-				components: stateArray,
-				uniqueIdCounter: state.uniqueIdCounter,
+				...state,
 				// action.payload is set in each page's ComponentDidMount()
-				currentPage: action.payload,
-				copy: state.copy,
-				siteURL: state.siteURL
+				currentPage: action.payload
 			};
 		case actionTypes.NEW_VAR:
 			// case "NEW_VAR" fires from Customize's renderStateComponents()
@@ -279,6 +244,21 @@ const reducer = (state = initialState, action) => {
 		default:
 			return state;
 	}
+};
+
+let moveFooter = components => {
+	// Purpose: Moves the footer component to the end of the array if it is in the components list.
+	// Step One: Remove all instances of the Footer component from the array.
+	const withoutFooter = components.filter(x => x.type !== "Footer");
+	// Step Two: If there was no Footer component in the array, return the array we started with.
+	if (components.length === withoutFooter.length) {
+		return components;
+	}
+	// Step Three: Get the footer component to add to the end of the filtered array
+	const footer = components.filter(x => x.type === "Footer");
+	// Step Four: Self explanatory. Add Footer component back to the end of the array.
+	withoutFooter.push(footer[0]);
+	return withoutFooter;
 };
 
 export default reducer;
