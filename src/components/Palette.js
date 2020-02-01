@@ -24,19 +24,92 @@ class Palette extends Component {
 		const headerArray = this.props.comp.filter(x => x.type === "Header");
 		const footerArray = this.props.comp.filter(x => x.type === "Footer");
 
+		// .pop the last entry in this.props.copy and use the .id property to go .id+1 and feed in a new value
+
 		if (e.target.innerHTML === "Header" && headerArray.length < 1) {
 			// Redux dispatch methods
-			this.props.header();
+
+			// Implementing a fix for "TypeError: Cannot read property 'id' of undefined" on typing in input field
+			// this if statement checks if we need to modify the .copy state property
+			if (this.props.comp.length > this.props.copy.length) {
+				// let copyIds = [];
+				// for (let i = this.props.copy.length; i < this.props.comp.length; i++) {}
+				let nextCopyId = 0;
+				console.log("compare:", this.props.copy !== []);
+				if (this.props.copy.length > 0) {
+					console.log("goose:", this.props.copy[0]);
+					nextCopyId = this.props.copy.pop().id + 1;
+				}
+				console.log(nextCopyId);
+				this.props.header(nextCopyId);
+			} else {
+				this.props.header();
+			}
+
+			// NOTE: before Fix was implenented, this if block simply read: "this.props.header()"
 		} else if (e.target.innerHTML === "Headline") {
-			this.props.headline();
+			if (this.props.comp.length > this.props.copy.length) {
+				let nextCopyId = 0;
+				console.log("compare:", this.props.copy !== []);
+
+				if (this.props.copy.length > 0) {
+					console.log("goose:", this.props.copy[0]);
+					nextCopyId = this.props.copy.pop().id + 1;
+				}
+				console.log(nextCopyId);
+				this.props.headline(nextCopyId);
+			} else {
+				this.props.headline();
+			}
+			//
 		} else if (e.target.innerHTML === "Text Area") {
-			this.props.textArea();
+			if (this.props.comp.length > this.props.copy.length) {
+				let nextCopyId = 0;
+				if (this.props.copy.length > 0) {
+					console.log("goose:", this.props.copy[0]);
+					nextCopyId = this.props.copy.pop().id + 1;
+				}
+				console.log(nextCopyId);
+				this.props.textArea(nextCopyId);
+			} else {
+				this.props.textArea();
+			}
+			//
 		} else if (e.target.innerHTML === "Image") {
-			this.props.image();
+			if (this.props.comp.length > this.props.copy.length) {
+				let nextCopyId = 0;
+				if (this.props.copy !== []) {
+					nextCopyId = this.props.copy.pop().id + 1;
+				}
+				console.log(nextCopyId);
+				this.props.image(nextCopyId);
+			} else {
+				this.props.image();
+			}
+			//
 		} else if (e.target.innerHTML === "Email Field") {
-			this.props.emailField();
+			if (this.props.comp.length > this.props.copy.length) {
+				let nextCopyId = 0;
+				if (this.props.copy !== []) {
+					nextCopyId = this.props.copy.pop().id + 1;
+				}
+				console.log(nextCopyId);
+				this.props.emailField(nextCopyId);
+			} else {
+				this.props.emailField();
+			}
+			//
 		} else if (e.target.innerHTML === "Footer" && footerArray.length < 1) {
-			this.props.footer();
+			if (this.props.comp.length > this.props.copy.length) {
+				let nextCopyId = 0;
+				if (this.props.copy !== []) {
+					nextCopyId = this.props.copy.pop().id + 1;
+				}
+				console.log(nextCopyId);
+				this.props.footer(nextCopyId);
+			} else {
+				this.props.footer();
+			}
 		} else {
 			console.log("Error: Can only add one header/footer component");
 		}
@@ -303,23 +376,30 @@ class Palette extends Component {
 const mapStateToProps = state => {
 	return {
 		comp: state.components,
-		pg: state.currentPage
+		pg: state.currentPage,
+		copy: state.copy
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		header: () => dispatch({ type: actionTypes.HEADER }),
-		headline: () => dispatch({ type: actionTypes.HEADLINE }),
-		textArea: () => dispatch({ type: actionTypes.TEXT_AREA }),
-		image: () => dispatch({ type: actionTypes.IMAGE }),
-		emailField: () => dispatch({ type: actionTypes.EMAIL_FIELD }),
-		footer: () => dispatch({ type: actionTypes.FOOTER }),
+		header: id => dispatch({ type: actionTypes.HEADER, payload: id }),
+		headline: id => dispatch({ type: actionTypes.HEADLINE, payload: id }),
+		textArea: id => dispatch({ type: actionTypes.TEXT_AREA, payload: id }),
+		image: id => dispatch({ type: actionTypes.IMAGE, payload: id }),
+		emailField: id =>
+			dispatch({ type: actionTypes.EMAIL_FIELD, payload: id }),
+		footer: id => dispatch({ type: actionTypes.FOOTER, payload: id }),
 		setNewComponents: newOrder =>
 			dispatch({ type: actionTypes.SET_NEW, payload: newOrder }),
 		delComponent: del => dispatch({ type: actionTypes.DEL, payload: del }),
 		setPage: page =>
-			dispatch({ type: actionTypes.PAGE_CHANGE, payload: page })
+			dispatch({ type: actionTypes.PAGE_CHANGE, payload: page }),
+		addCopy: (text, id) =>
+			dispatch({
+				type: actionTypes.ADD_COPY,
+				payload: [text, id]
+			})
 	};
 };
 
