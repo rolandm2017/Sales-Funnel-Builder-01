@@ -12,3 +12,5 @@ export const ADD_COPY = "ADD_COPY";
 export const SET_URL = "SET_URL";
 
 export const ADD_COMPONENT = "ADD_COMPONENT";
+
+export const PREP_COPY = "PREP_COPY";

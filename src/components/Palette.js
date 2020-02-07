@@ -27,7 +27,7 @@ class Palette extends Component {
 		// .pop the last entry in this.props.copy and use the .id property to go .id+1 and feed in a new value
 		let nextCopyId = 0;
 		if (this.props.copy.length > 0) {
-			nextCopyId = this.props.copy.pop().id + 1;
+			nextCopyId = this.props.copy[this.props.copy.length - 1].id + 1;
 		}
 		if (e.target.innerHTML === "Header" && headerArray.length < 1) {
 			// Redux dispatch methods
@@ -334,13 +334,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		// header: id => dispatch({ type: actionTypes.HEADER, payload: id }),
-		// headline: id => dispatch({ type: actionTypes.HEADLINE, payload: id }),
-		// textArea: id => dispatch({ type: actionTypes.TEXT_AREA, payload: id }),
-		// image: id => dispatch({ type: actionTypes.IMAGE, payload: id }),
-		// emailField: id =>
-		// 	dispatch({ type: actionTypes.EMAIL_FIELD, payload: id }),
-		// footer: id => dispatch({ type: actionTypes.FOOTER, payload: id }),
 		addComp: (component, id) =>
 			dispatch({
 				type: actionTypes.ADD_COMPONENT,

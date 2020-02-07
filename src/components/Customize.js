@@ -55,17 +55,8 @@ class Customize extends Component {
 										this.props.copy[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
-							<p>DEBUGGING:</p>
-
-							<p>Component ID: {this.props.comp[i].id}</p>
-							<p>
-								Iterating over: {i}th component,
-								this.props.comp[i].
-							</p>
-							<p>
-								customText will receive: {this.props.comp[i].id}
-							</p>
 						</div>
 					);
 				} else {
@@ -84,17 +75,8 @@ class Customize extends Component {
 										this.props.copy[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
-							<p>DEBUGGING:</p>
-
-							<p>Component ID: {this.props.comp[i].id}</p>
-							<p>
-								Iterating over: {i}th component,
-								this.props.comp[i].
-							</p>
-							<p>
-								customText will receive: {this.props.comp[i].id}
-							</p>
 						</div>
 					);
 				}
@@ -122,16 +104,8 @@ class Customize extends Component {
 										this.props.copy[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
-							<p>DEBUGGING:</p>
-							<p>Component ID: {this.props.comp[i].id}</p>
-							<p>
-								Iterating over: {i}th component,
-								this.props.comp[i].
-							</p>
-							<p>
-								customText will receive: {this.props.comp[i].id}
-							</p>
 						</div>
 					);
 				} else {
@@ -151,16 +125,8 @@ class Customize extends Component {
 										this.props.copy[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
-							<p>DEBUGGING:</p>
-							<p>Component ID: {this.props.comp[i].id}</p>
-							<p>
-								Iterating over: {i}th component,
-								this.props.comp[i].
-							</p>
-							<p>
-								customText will receive: {this.props.comp[i].id}
-							</p>
 						</div>
 					);
 				}
@@ -185,16 +151,8 @@ class Customize extends Component {
 										this.props.copy[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
-							<p>DEBUGGING:</p>
-							<p>Component ID: {this.props.comp[i].id}</p>
-							<p>
-								Iterating over: {i}th component,
-								this.props.comp[i].
-							</p>
-							<p>
-								customText will receive: {this.props.comp[i].id}
-							</p>
 						</div>
 					);
 				} else {
@@ -213,16 +171,8 @@ class Customize extends Component {
 										this.props.copy[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
-							<p>DEBUGGING:</p>
-							<p>Component ID: {this.props.comp[i].id}</p>
-							<p>
-								Iterating over: {i}th component,
-								this.props.comp[i].
-							</p>
-							<p>
-								customText will receive: {this.props.comp[i].id}
-							</p>
 						</div>
 					);
 				}
@@ -248,6 +198,7 @@ class Customize extends Component {
 									)
 								}
 								placeholder={"Type your caption here..."}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
@@ -268,6 +219,7 @@ class Customize extends Component {
 									)
 								}
 								placeholder={"Type your caption here..."}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
@@ -310,6 +262,7 @@ class Customize extends Component {
 										this.props.comp[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
@@ -329,6 +282,7 @@ class Customize extends Component {
 										this.props.comp[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
