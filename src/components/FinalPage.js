@@ -20,6 +20,7 @@ class FinalPage extends Component {
 
 	componentDidMount() {
 		this.props.setPage(3);
+		document.title = "Sales Funnel Builder";
 		// console.log("[Customize.js] componentDidMount()");
 	}
 
@@ -213,7 +214,7 @@ class FinalPage extends Component {
 				<Link to="/customize">Back</Link>
 				<br />
 
-				{/* <p>Note: You lose your work if you refresh the page!</p> */}
+				<p>Note: You lose your work if you refresh the page!</p>
 			</div>
 		);
 	}

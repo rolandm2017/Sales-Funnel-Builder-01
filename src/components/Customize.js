@@ -16,16 +16,22 @@ import * as actionTypes from "../store/constants";
 class Customize extends Component {
 	componentDidMount() {
 		this.props.setPage(2);
+		document.title = "Sales Funnel Builder";
+
 		// console.log("[Customize.js] componentDidMount()");
 	}
 
 	renderStateComponents() {
 		// Is it really DRY enough having the same function in both Palette.js and Customize.js?
 		let toRender = [];
-		console.log("[Customize.js] renderStateComponents()]");
+		// console.log("[Customize.js] renderStateComponents()]");
+		console.log("Copy:", this.props.copy);
 
 		// FIXME: Still getting "index.js:1 Warning: Each child in a list should have a unique "key" prop."
 		for (let i = 0; i < this.props.comp.length; i++) {
+			// console.log("Component State:", this.props.comp);
+			// console.log("Copy State:", this.props.copy);
+
 			if (this.props.comp[i].type === "Header") {
 				// need this if block because toRender.push(<Header customText={this.props.copy[i].webCopy}></Header>)
 				// renders an error, "cannot get .webcopy property of undefined" or something like that w/o it
@@ -46,9 +52,10 @@ class Customize extends Component {
 								onChange={e =>
 									this.props.addCopy(
 										e.target.value,
-										this.props.comp[i].id
+										this.props.copy[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
@@ -65,9 +72,10 @@ class Customize extends Component {
 								onChange={e =>
 									this.props.addCopy(
 										e.target.value,
-										this.props.comp[i].id
+										this.props.copy[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
@@ -93,9 +101,10 @@ class Customize extends Component {
 								onChange={e =>
 									this.props.addCopy(
 										e.target.value,
-										this.props.comp[i].id
+										this.props.copy[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
@@ -109,12 +118,14 @@ class Customize extends Component {
 							<input
 								key={this.props.comp.length + i}
 								associate={this.props.comp[i].id}
+								// FIXME: getting TypeError: Cannot read property 'id' of undefined on typing
 								onChange={e =>
 									this.props.addCopy(
 										e.target.value,
-										this.props.comp[i].id
+										this.props.copy[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
@@ -137,9 +148,10 @@ class Customize extends Component {
 								onChange={e =>
 									this.props.addCopy(
 										e.target.value,
-										this.props.comp[i].id
+										this.props.copy[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
@@ -156,9 +168,10 @@ class Customize extends Component {
 								onChange={e =>
 									this.props.addCopy(
 										e.target.value,
-										this.props.comp[i].id
+										this.props.copy[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
@@ -185,6 +198,7 @@ class Customize extends Component {
 									)
 								}
 								placeholder={"Type your caption here..."}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
@@ -205,6 +219,7 @@ class Customize extends Component {
 									)
 								}
 								placeholder={"Type your caption here..."}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
@@ -247,6 +262,7 @@ class Customize extends Component {
 										this.props.comp[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
@@ -266,6 +282,7 @@ class Customize extends Component {
 										this.props.comp[i].id
 									)
 								}
+								value={this.props.copy[i].webCopy}
 							></input>
 						</div>
 					);
@@ -288,7 +305,7 @@ class Customize extends Component {
 				<Link to="/">Back</Link>
 				<br />
 				<Link to="/finalpage">Go To Third Step</Link>
-				{/* <p>Note: You lose your work if you refresh the page!</p> */}
+				<p>Note: You lose your work if you refresh the page!</p>
 			</div>
 		);
 	}

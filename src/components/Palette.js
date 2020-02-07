@@ -16,6 +16,7 @@ import * as actionTypes from "../store/constants";
 class Palette extends Component {
 	componentDidMount() {
 		this.props.setPage(1);
+		document.title = "Sales Funnel Builder";
 	}
 
 	addComponent(e) {
@@ -23,19 +24,43 @@ class Palette extends Component {
 		const headerArray = this.props.comp.filter(x => x.type === "Header");
 		const footerArray = this.props.comp.filter(x => x.type === "Footer");
 
+		// .pop the last entry in this.props.copy and use the .id property to go .id+1 and feed in a new value
+		let nextCopyId = 0;
+		if (this.props.copy.length > 0) {
+			nextCopyId = this.props.copy[this.props.copy.length - 1].id + 1;
+		}
 		if (e.target.innerHTML === "Header" && headerArray.length < 1) {
 			// Redux dispatch methods
-			this.props.header();
+
+			// // Implementing a fix for "TypeError: Cannot read property 'id' of undefined" on typing in input field
+			// // this if statement checks if we need to modify the .copy state property
+			// if (this.props.comp.length > this.props.copy.length) {
+			// 	// let copyIds = [];
+			// 	// for (let i = this.props.copy.length; i < this.props.comp.length; i++) {}
+			// 	let nextCopyId = 0;
+			// 	console.log("compare:", this.props.copy !== []);
+			// 	if (this.props.copy.length > 0) {
+			// 		console.log("goose:", this.props.copy[0]);
+			// 		nextCopyId = this.props.copy.pop().id + 1;
+			// 	}
+			// 	console.log(nextCopyId);
+			// 	this.props.header(nextCopyId);
+			// } else {
+			// 	this.props.header();
+			// }
+
+			// // NOTE: before Fix was implenented, this if block simply read: "this.props.header()"
+			this.props.addComp("Header", nextCopyId);
 		} else if (e.target.innerHTML === "Headline") {
-			this.props.headline();
+			this.props.addComp("Headline", nextCopyId);
 		} else if (e.target.innerHTML === "Text Area") {
-			this.props.textArea();
+			this.props.addComp("Text Area", nextCopyId);
 		} else if (e.target.innerHTML === "Image") {
-			this.props.image();
+			this.props.addComp("Image", nextCopyId);
 		} else if (e.target.innerHTML === "Email Field") {
-			this.props.emailField();
+			this.props.addComp("Email Field", nextCopyId);
 		} else if (e.target.innerHTML === "Footer" && footerArray.length < 1) {
-			this.props.footer();
+			this.props.addComp("Footer", nextCopyId);
 		} else {
 			console.log("Error: Can only add one header/footer component");
 		}
@@ -56,6 +81,7 @@ class Palette extends Component {
 	moveUp(typeAndId) {
 		// typeAndId is an array where
 		// typeAndId[0] === componentType & typeAndId[1] === componentUniqueId
+		console.log(typeAndId);
 
 		// return a new array of the state.components state to work with
 		let tempArray = [...this.props.comp];
@@ -85,6 +111,7 @@ class Palette extends Component {
 		tempArray[index - 1] = tempArray[index];
 		tempArray[index] = movingDown;
 
+		console.table(tempArray);
 		this.props.setNewComponents(tempArray);
 	}
 
@@ -291,7 +318,7 @@ class Palette extends Component {
 				<div>{this.renderStateComponents()}</div>
 				<Link to="/customize">Go To Next Step</Link>
 
-				{/* <p>Note: You lose your work if you refresh the page!</p> */}
+				<p>Note: You lose your work if you refresh the page!</p>
 			</div>
 		);
 	}
@@ -300,23 +327,28 @@ class Palette extends Component {
 const mapStateToProps = state => {
 	return {
 		comp: state.components,
-		pg: state.currentPage
+		pg: state.currentPage,
+		copy: state.copy
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		header: () => dispatch({ type: actionTypes.HEADER }),
-		headline: () => dispatch({ type: actionTypes.HEADLINE }),
-		textArea: () => dispatch({ type: actionTypes.TEXT_AREA }),
-		image: () => dispatch({ type: actionTypes.IMAGE }),
-		emailField: () => dispatch({ type: actionTypes.EMAIL_FIELD }),
-		footer: () => dispatch({ type: actionTypes.FOOTER }),
+		addComp: (component, id) =>
+			dispatch({
+				type: actionTypes.ADD_COMPONENT,
+				payload: [component, id]
+			}),
 		setNewComponents: newOrder =>
 			dispatch({ type: actionTypes.SET_NEW, payload: newOrder }),
 		delComponent: del => dispatch({ type: actionTypes.DEL, payload: del }),
 		setPage: page =>
-			dispatch({ type: actionTypes.PAGE_CHANGE, payload: page })
+			dispatch({ type: actionTypes.PAGE_CHANGE, payload: page }),
+		addCopy: (text, id) =>
+			dispatch({
+				type: actionTypes.ADD_COPY,
+				payload: [text, id]
+			})
 	};
 };
 
