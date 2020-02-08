@@ -124,7 +124,14 @@ const reducer = (state = initialState, action) => {
 				// components: stateArray,
 				siteURL: "/salespage/" + domain
 			};
-
+		// case actionTypes.SET_START:
+		// 	return {
+		// 		...state
+		// 	};
+		// case actionTypes.SET_END:
+		// 	return {
+		// 		...state
+		// 	};
 		default:
 			return state;
 	}

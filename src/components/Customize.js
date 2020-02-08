@@ -304,7 +304,7 @@ class Customize extends Component {
 				{this.renderStateComponents()}
 				<Link to="/">Back</Link>
 				<br />
-				<Link to="/finalpage">Go To Third Step</Link>
+				<Link to="/finalpage">Go To Third Page</Link>
 				<p>Note: You lose your work if you refresh the page!</p>
 			</div>
 		);

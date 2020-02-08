@@ -13,13 +13,38 @@ import Footer from "./Copy/Footer";
 
 import * as actionTypes from "../store/constants";
 
-class FinalPage extends Component {
-	componentDidMount() {
-		this.props.setPage(3);
-		document.title = "Sales Funnel Builder";
-		// console.log("[Customize.js] componentDidMount()");
-	}
+// TODO: Add "Add Underline" button
+// TODO: Add "Add Highlight" button
+// TODO: Figure out how to make each styling have a "wrap from x to y" text area
+// TODO: .Split() up each text into individual words, count the words, allow user to add
+// highlighting from the nth word to the mth word
 
+// const styler = (
+// 	<div>
+// 		<p>From</p>
+// 		<input
+// 			type="text"
+// 			size="25"
+// 			style={{ width: "50px" }}
+// 			placeholder="From"
+// 			onChange={e =>
+// 				this.props.setStartPoint(e.target.value, this.props.comp[i].id)
+// 			}
+// 		></input>
+// 		<p>To</p>
+// 		<input
+// 			type="text"
+// 			size="25"
+// 			style={{ width: "50px" }}
+// 			placeholder="To"
+// 			onChange={e =>
+// 				this.props.setEndPoint(e.target.value, this.props.comp[i].id)
+// 			}
+// 		></input>
+// 	</div>
+// );
+
+class Styling extends Component {
 	renderStateComponents() {
 		// Is it really DRY enough having the same function in both Palette.js and Customize.js?
 		let toRender = [];
@@ -32,80 +57,46 @@ class FinalPage extends Component {
 				// this.installComponent(this.props.comp, i);
 				// need this if block because toRender.push(<Header customText={this.props.copy[i].webCopy}></Header>)
 				// renders an error, "cannot get .webcopy property of undefined" or something like that w/o it
-				if (this.props.copy[i]) {
-					toRender.push(
-						<div>
-							<Header
-								key={i}
-								uniqueId={this.props.comp[i].id}
-								// This line is the reason the function repeats so much.
-								// Without the if "if (this.props.copy[i]) {} else {}" blocks of code...
-								// the customText property would render "cannot get .webcopy property of undefined"
-								customText={this.props.copy[i].webCopy}
-							></Header>
-						</div>
-					);
-				} else {
-					toRender.push(
-						<div>
-							<Header
-								key={i}
-								uniqueId={this.props.comp[i].id}
-							></Header>
-						</div>
-					);
-				}
-
+				toRender.push(
+					<div>
+						<Header
+							key={i}
+							uniqueId={this.props.comp[i].id}
+							// This line is the reason the function repeats so much.
+							// Without the if "if (this.props.copy[i]) {} else {}" blocks of code...
+							// the customText property would render "cannot get .webcopy property of undefined"
+							customText={this.props.copy[i].webCopy}
+						></Header>
+					</div>
+				);
 				// TODO: Repeatedly reassure yourself that this if statement fixes the Infinite Loop problem.
 				if (this.props.copy.length === 0) {
 					// assigns a unique ID to each piece of copy entered into database
 					this.props.getNewStateVariable(this.props.comp[i].id);
 				}
 			} else if (this.props.comp[i].type === "Headline") {
-				if (this.props.copy[i]) {
-					toRender.push(
-						<div>
-							<Headline
-								key={i}
-								uniqueId={this.props.comp[i].id}
-								customText={this.props.copy[i].webCopy}
-							></Headline>
-						</div>
-					);
-				} else {
-					toRender.push(
-						<div>
-							<Headline
-								key={i}
-								uniqueId={this.props.comp[i].id}
-							></Headline>
-						</div>
-					);
-				}
+				toRender.push(
+					<div>
+						<Headline
+							key={i}
+							uniqueId={this.props.comp[i].id}
+							customText={this.props.copy[i].webCopy}
+						></Headline>
+					</div>
+				);
 				if (this.props.copy.length === 0) {
 					this.props.getNewStateVariable(this.props.comp[i].id);
 				}
 			} else if (this.props.comp[i].type === "Text Area") {
-				if (this.props.copy[i]) {
-					toRender.push(
-						<div>
-							<TextArea
-								key={i}
-								uniqueId={this.props.comp[i].id}
-								customText={this.props.copy[i].webCopy}
-							></TextArea>
-						</div>
-					);
-				} else {
-					toRender.push(
-						<div>
-							<TextArea
-								key={i}
-								uniqueId={this.props.comp[i].id}
-							></TextArea>
-						</div>
-					);
-				}
+				toRender.push(
+					<div>
+						<TextArea
+							key={i}
+							uniqueId={this.props.comp[i].id}
+							customText={this.props.copy[i].webCopy}
+						></TextArea>
+					</div>
+				);
 				if (this.props.copy.length === 0) {
 					this.props.getNewStateVariable(this.props.comp[i].id);
 				}
@@ -177,40 +168,13 @@ class FinalPage extends Component {
 		return toRender;
 	}
 
-	handleChange = e => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	};
-
-	submitDomain = () => {
-		this.props.setURL(this.state.domain);
-	};
-
 	render() {
 		return (
 			<div>
-				<h2>Ready To Render, Now Select A Domain Name...</h2>
-
-				<input
-					onChange={this.handleChange}
-					name="domain"
-					placeholder={"Choose a name for your site..."}
-				></input>
-
-				<button onClick={this.submitDomain}>Ready!</button>
-				<p>Pick a domain name like "YourNewSite" or "MyCoolProduct".</p>
-				{this.props.siteURL.length > 11 ? (
-					<Link to={this.props.siteURL}>Go To Your New Site</Link>
-				) : null}
-				<br />
-				<h5>Here's How Your Website Will Look:</h5>
 				{this.renderStateComponents()}
-
 				<Link to="/customize">Back</Link>
 				<br />
-
-				<p>Note: You lose your work if you refresh the page!</p>
+				<Link to="/finalpage">Go To Final Page</Link>
 			</div>
 		);
 	}
@@ -230,8 +194,12 @@ const mapDispatchToProps = dispatch => {
 		setPage: page =>
 			dispatch({ type: actionTypes.PAGE_CHANGE, payload: page }),
 		setURL: domain =>
-			dispatch({ type: actionTypes.SET_URL, payload: domain })
+			dispatch({ type: actionTypes.SET_URL, payload: domain }),
+		setStartPoint: anchor =>
+			dispatch({ type: actionTypes.SET_START, payload: anchor }),
+		setEndPoint: anchor =>
+			dispatch({ type: actionTypes.SET_END, payload: anchor })
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FinalPage);
+export default connect(mapStateToProps, mapDispatchToProps)(Styling);

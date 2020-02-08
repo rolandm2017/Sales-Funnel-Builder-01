@@ -10,6 +10,8 @@ export const PAGE_CHANGE = "PAGE_CHANGE";
 export const NEW_VAR = "NEW_VAR";
 export const ADD_COPY = "ADD_COPY";
 export const SET_URL = "SET_URL";
+export const SET_START = "SET_START";
+export const SET_END = "SET_END";
 
 export const ADD_COMPONENT = "ADD_COMPONENT";
 
