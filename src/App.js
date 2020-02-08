@@ -21,9 +21,6 @@ const Div = styled.div`
 	background-color: #accbe1;
 `;
 
-// hex codes for color scheme:
-// CBB992, EECE85, 74838E, 3D3947, DD5B69
-
 function App(props) {
 	return (
 		<div className="App">
