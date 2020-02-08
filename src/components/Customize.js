@@ -46,17 +46,27 @@ class Customize extends Component {
 								// the customText property would render "cannot get .webcopy property of undefined"
 								customText={this.props.copy[i].webCopy}
 							></Header>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.copy[i].id
-									)
-								}
-								value={this.props.copy[i].webCopy}
-							></input>
+							<div
+								style={{
+									padding: "0.5em",
+									border: "1px solid black",
+									backgroundColor: "#c7cdd6",
+									display: "inline-block"
+								}}
+							>
+								<input
+									key={this.props.comp.length + i}
+									associate={this.props.comp[i].id}
+									onChange={e =>
+										this.props.addCopy(
+											e.target.value,
+											this.props.copy[i].id
+										)
+									}
+									value={this.props.copy[i].webCopy}
+									placeholder="Enter custom text..."
+								></input>
+							</div>
 						</div>
 					);
 				} else {
@@ -66,17 +76,27 @@ class Customize extends Component {
 								key={i}
 								uniqueId={this.props.comp[i].id}
 							></Header>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.copy[i].id
-									)
-								}
-								value={this.props.copy[i].webCopy}
-							></input>
+							<div
+								style={{
+									padding: "0.5em",
+									border: "1px solid black",
+									backgroundColor: "#c7cdd6",
+									display: "inline-block"
+								}}
+							>
+								<input
+									key={this.props.comp.length + i}
+									associate={this.props.comp[i].id}
+									onChange={e =>
+										this.props.addCopy(
+											e.target.value,
+											this.props.copy[i].id
+										)
+									}
+									value={this.props.copy[i].webCopy}
+									placeholder="Enter custom text..."
+								></input>
+							</div>
 						</div>
 					);
 				}
@@ -95,17 +115,27 @@ class Customize extends Component {
 								uniqueId={this.props.comp[i].id}
 								customText={this.props.copy[i].webCopy}
 							></Headline>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.copy[i].id
-									)
-								}
-								value={this.props.copy[i].webCopy}
-							></input>
+							<div
+								style={{
+									padding: "0.5em",
+									border: "1px solid black",
+									backgroundColor: "#c7cdd6",
+									display: "inline-block"
+								}}
+							>
+								<input
+									key={this.props.comp.length + i}
+									associate={this.props.comp[i].id}
+									onChange={e =>
+										this.props.addCopy(
+											e.target.value,
+											this.props.copy[i].id
+										)
+									}
+									value={this.props.copy[i].webCopy}
+									placeholder="Enter custom text..."
+								></input>
+							</div>
 						</div>
 					);
 				} else {
@@ -115,18 +145,28 @@ class Customize extends Component {
 								key={i}
 								uniqueId={this.props.comp[i].id}
 							></Headline>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								// FIXME: getting TypeError: Cannot read property 'id' of undefined on typing
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.copy[i].id
-									)
-								}
-								value={this.props.copy[i].webCopy}
-							></input>
+							<div
+								style={{
+									padding: "0.5em",
+									border: "1px solid black",
+									backgroundColor: "#c7cdd6",
+									display: "inline-block"
+								}}
+							>
+								<input
+									key={this.props.comp.length + i}
+									associate={this.props.comp[i].id}
+									// FIXME: getting TypeError: Cannot read property 'id' of undefined on typing
+									onChange={e =>
+										this.props.addCopy(
+											e.target.value,
+											this.props.copy[i].id
+										)
+									}
+									value={this.props.copy[i].webCopy}
+									placeholder="Enter custom text..."
+								></input>
+							</div>
 						</div>
 					);
 				}
@@ -142,17 +182,27 @@ class Customize extends Component {
 								uniqueId={this.props.comp[i].id}
 								customText={this.props.copy[i].webCopy}
 							></TextArea>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.copy[i].id
-									)
-								}
-								value={this.props.copy[i].webCopy}
-							></input>
+							<div
+								style={{
+									padding: "0.5em",
+									border: "1px solid black",
+									backgroundColor: "#c7cdd6",
+									display: "inline-block"
+								}}
+							>
+								<input
+									key={this.props.comp.length + i}
+									associate={this.props.comp[i].id}
+									onChange={e =>
+										this.props.addCopy(
+											e.target.value,
+											this.props.copy[i].id
+										)
+									}
+									value={this.props.copy[i].webCopy}
+									placeholder="Enter custom text..."
+								></input>
+							</div>
 						</div>
 					);
 				} else {
@@ -162,17 +212,27 @@ class Customize extends Component {
 								key={i}
 								uniqueId={this.props.comp[i].id}
 							></TextArea>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.copy[i].id
-									)
-								}
-								value={this.props.copy[i].webCopy}
-							></input>
+							<div
+								style={{
+									padding: "0.5em",
+									border: "1px solid black",
+									backgroundColor: "#c7cdd6",
+									display: "inline-block"
+								}}
+							>
+								<input
+									key={this.props.comp.length + i}
+									associate={this.props.comp[i].id}
+									onChange={e =>
+										this.props.addCopy(
+											e.target.value,
+											this.props.copy[i].id
+										)
+									}
+									value={this.props.copy[i].webCopy}
+									placeholder="Enter custom text..."
+								></input>
+							</div>
 						</div>
 					);
 				}
@@ -188,18 +248,27 @@ class Customize extends Component {
 								uniqueId={this.props.comp[i].id}
 								customText={this.props.copy[i].webCopy}
 							></Image>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-								placeholder={"Type your caption here..."}
-								value={this.props.copy[i].webCopy}
-							></input>
+							<div
+								style={{
+									padding: "0.5em",
+									border: "1px solid black",
+									backgroundColor: "#c7cdd6",
+									display: "inline-block"
+								}}
+							>
+								<input
+									key={this.props.comp.length + i}
+									associate={this.props.comp[i].id}
+									onChange={e =>
+										this.props.addCopy(
+											e.target.value,
+											this.props.comp[i].id
+										)
+									}
+									placeholder={"Type your caption here..."}
+									value={this.props.copy[i].webCopy}
+								></input>
+							</div>
 						</div>
 					);
 				} else {
@@ -209,18 +278,27 @@ class Customize extends Component {
 								key={i}
 								uniqueId={this.props.comp[i].id}
 							></Image>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-								placeholder={"Type your caption here..."}
-								value={this.props.copy[i].webCopy}
-							></input>
+							<div
+								style={{
+									padding: "0.5em",
+									border: "1px solid black",
+									backgroundColor: "#c7cdd6",
+									display: "inline-block"
+								}}
+							>
+								<input
+									key={this.props.comp.length + i}
+									associate={this.props.comp[i].id}
+									onChange={e =>
+										this.props.addCopy(
+											e.target.value,
+											this.props.comp[i].id
+										)
+									}
+									placeholder={"Type your caption here..."}
+									value={this.props.copy[i].webCopy}
+								></input>
+							</div>
 						</div>
 					);
 				}
@@ -253,17 +331,27 @@ class Customize extends Component {
 								uniqueId={this.props.comp[i].id}
 								customText={this.props.copy[i].webCopy}
 							></Footer>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-								value={this.props.copy[i].webCopy}
-							></input>
+							<div
+								style={{
+									padding: "0.5em",
+									border: "1px solid black",
+									backgroundColor: "#c7cdd6",
+									display: "inline-block"
+								}}
+							>
+								<input
+									key={this.props.comp.length + i}
+									associate={this.props.comp[i].id}
+									onChange={e =>
+										this.props.addCopy(
+											e.target.value,
+											this.props.comp[i].id
+										)
+									}
+									value={this.props.copy[i].webCopy}
+									placeholder="Enter custom text..."
+								></input>
+							</div>
 						</div>
 					);
 				} else {
@@ -273,17 +361,27 @@ class Customize extends Component {
 								key={i}
 								uniqueId={this.props.comp[i].id}
 							></Footer>
-							<input
-								key={this.props.comp.length + i}
-								associate={this.props.comp[i].id}
-								onChange={e =>
-									this.props.addCopy(
-										e.target.value,
-										this.props.comp[i].id
-									)
-								}
-								value={this.props.copy[i].webCopy}
-							></input>
+							<div
+								style={{
+									padding: "0.5em",
+									border: "1px solid black",
+									backgroundColor: "#c7cdd6",
+									display: "inline-block"
+								}}
+							>
+								<input
+									key={this.props.comp.length + i}
+									associate={this.props.comp[i].id}
+									onChange={e =>
+										this.props.addCopy(
+											e.target.value,
+											this.props.comp[i].id
+										)
+									}
+									value={this.props.copy[i].webCopy}
+									placeholder="Enter custom text..."
+								></input>
+							</div>
 						</div>
 					);
 				}
@@ -304,7 +402,7 @@ class Customize extends Component {
 				{this.renderStateComponents()}
 				<Link to="/">Back</Link>
 				<br />
-				<Link to="/finalpage">Go To Third Step</Link>
+				<Link to="/finalpage">Go To Third Page</Link>
 				<p>Note: You lose your work if you refresh the page!</p>
 			</div>
 		);

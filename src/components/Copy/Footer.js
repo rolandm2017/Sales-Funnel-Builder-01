@@ -2,14 +2,24 @@ import React from "react";
 
 import { connect } from "react-redux";
 
+import styled from "styled-components";
+
+const Div = styled.div`
+	background-color: #7c98b3;
+	margin: 0.5em;
+	padding: 0.5em;
+`;
+
 const footer = props => {
 	return (
 		<div>
-			{props.customText ? <p>{props.customText}</p> : <p>Footer</p>}
+			<Div>
+				{props.customText ? <p>{props.customText}</p> : <p>Footer</p>}
 
-			{props.pg === 1 ? (
-				<button onClick={props.del}>Remove Footer</button>
-			) : null}
+				{props.pg === 1 ? (
+					<button onClick={props.del}>Remove Footer</button>
+				) : null}
+			</Div>
 		</div>
 	);
 };
