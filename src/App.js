@@ -13,6 +13,18 @@ import FinalPage from "./components/FinalPage";
 import Public from "./components/Public";
 import Styling from "./components/Styling";
 
+import LandingPage from "../Landing";
+import SignUpPage from "../SignUp";
+import SignInPage from "../SignIn";
+import PasswordForgetPage from "../PasswordForget";
+import HomePage from "../Home";
+import AccountPage from "../Account";
+import AdminPage from "../Admin";
+
+import Navigation from "./compnents/Navigation";
+
+import * as ROUTES from "./store/routes";
+
 const Div = styled.div`
 	padding: 0.5em;
 	margin: 0.5em;
@@ -21,19 +33,31 @@ const Div = styled.div`
 	background-color: #accbe1;
 `;
 
-// hex codes for color scheme:
-// CBB992, EECE85, 74838E, 3D3947, DD5B69
-
 function App(props) {
 	return (
 		<div className="App">
 			<Div>
+				<Navigation></Navigation>
+
+				<hr />
+
+				<Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+				<Route path={ROUTES.SIGN_IN} component={SignInPage} />
+				<Route
+					path={ROUTES.PASSWORD_FORGET}
+					component={PasswordForgetPage}
+				/>
+				<Route path={ROUTES.HOME} component={HomePage} />
+				<Route path={ROUTES.ACCOUNT} component={AccountPage} />
+				<Route path={ROUTES.ADMIN} component={AdminPage} />
+
 				<Route path={props.siteURL} exact component={Public}></Route>
 				<Route path="/finalpage" component={FinalPage}></Route>
 				<Route path="/customize" component={Customize}></Route>
 				<Route path="/styling" component={Styling}></Route>
 
-				<Route path="/" exact component={Palette}></Route>
+				<Route path="/palette" component={Palette}></Route>
+				<Route path="/" exact component={LandingPage}></Route>
 			</Div>
 		</div>
 	);
