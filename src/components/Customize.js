@@ -400,7 +400,7 @@ class Customize extends Component {
 				<h2>Your Custom Elements: Enter Custom Text</h2>
 
 				{this.renderStateComponents()}
-				<Link to="/">Back</Link>
+				<Link to="/palette">Back</Link>
 				<br />
 				<Link to="/finalpage">Go To Third Page</Link>
 				<p>Note: You lose your work if you refresh the page!</p>

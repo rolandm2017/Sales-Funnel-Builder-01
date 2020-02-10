@@ -10,7 +10,8 @@ const initialState = {
 	uniqueIdCounter: 0,
 	currentPage: 1,
 	copy: [],
-	siteURL: "/salespage/"
+	siteURL: "/salespage/",
+	auth: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -132,6 +133,11 @@ const reducer = (state = initialState, action) => {
 		// 	return {
 		// 		...state
 		// 	};
+		case actionTypes.SET_AUTH:
+			return {
+				...state,
+				auth: action.payload
+			};
 		default:
 			return state;
 	}

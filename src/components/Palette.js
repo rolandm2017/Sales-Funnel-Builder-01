@@ -316,6 +316,7 @@ class Palette extends Component {
 				<button onClick={e => this.addComponent(e)}>Email Field</button>
 				<button onClick={e => this.addComponent(e)}>Footer</button>
 				<div>{this.renderStateComponents()}</div>
+				<Link to="/">Back</Link>
 				<Link to="/customize">Go To Next Step</Link>
 
 				<p>Note: You lose your work if you refresh the page!</p>
