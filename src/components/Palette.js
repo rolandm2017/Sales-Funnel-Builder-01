@@ -21,8 +21,8 @@ class Palette extends Component {
 
 	addComponent(e) {
 		// starts the process of rendering a component to the DOM
-		const headerArray = this.props.comp.filter(x => x.type === "Header");
-		const footerArray = this.props.comp.filter(x => x.type === "Footer");
+		const headerArray = this.props.comp.filter((x) => x.type === "Header");
+		const footerArray = this.props.comp.filter((x) => x.type === "Footer");
 
 		// .pop the last entry in this.props.copy and use the .id property to go .id+1 and feed in a new value
 		let nextCopyId = 0;
@@ -158,7 +158,7 @@ class Palette extends Component {
 						del={() =>
 							this.deleteComponent([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 					></Header>
@@ -171,19 +171,19 @@ class Palette extends Component {
 						moveUp={() =>
 							this.moveUp([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 						moveDown={() =>
 							this.moveDown([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 						del={() =>
 							this.deleteComponent([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 					></Headline>
@@ -196,19 +196,19 @@ class Palette extends Component {
 						moveUp={() =>
 							this.moveUp([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 						moveDown={() =>
 							this.moveDown([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 						del={() =>
 							this.deleteComponent([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 					></TextArea>
@@ -221,19 +221,19 @@ class Palette extends Component {
 						moveUp={() =>
 							this.moveUp([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 						moveDown={() =>
 							this.moveDown([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 						del={() =>
 							this.deleteComponent([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 					></Image>
@@ -246,19 +246,19 @@ class Palette extends Component {
 						moveUp={() =>
 							this.moveUp([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 						moveDown={() =>
 							this.moveDown([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 						del={() =>
 							this.deleteComponent([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 					></EmailField>
@@ -271,19 +271,19 @@ class Palette extends Component {
 						moveUp={() =>
 							this.moveUp([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 						moveDown={() =>
 							this.moveDown([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 						del={() =>
 							this.deleteComponent([
 								this.props.comp[i].type,
-								this.props.comp[i].id
+								this.props.comp[i].id,
 							])
 						}
 					></Footer>
@@ -309,46 +309,47 @@ class Palette extends Component {
 				<p>Debugging, page: {this.props.pg}</p> */}
 
 				<h2>Select Your Custom Elements</h2>
-				<button onClick={e => this.addComponent(e)}>Header</button>
-				<button onClick={e => this.addComponent(e)}>Headline</button>
-				<button onClick={e => this.addComponent(e)}>Text Area</button>
-				<button onClick={e => this.addComponent(e)}>Image</button>
-				<button onClick={e => this.addComponent(e)}>Email Field</button>
-				<button onClick={e => this.addComponent(e)}>Footer</button>
+				<button onClick={(e) => this.addComponent(e)}>Header</button>
+				<button onClick={(e) => this.addComponent(e)}>Headline</button>
+				<button onClick={(e) => this.addComponent(e)}>Text Area</button>
+				<button onClick={(e) => this.addComponent(e)}>Image</button>
+				<button onClick={(e) => this.addComponent(e)}>
+					Email Field
+				</button>
+				<button onClick={(e) => this.addComponent(e)}>Footer</button>
 				<div>{this.renderStateComponents()}</div>
 				<Link to="/customize">Go To Next Step</Link>
-
-				<p>Note: You lose your work if you refresh the page!</p>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		comp: state.components,
 		pg: state.currentPage,
-		copy: state.copy
+		copy: state.copy,
 	};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
 	return {
 		addComp: (component, id) =>
 			dispatch({
 				type: actionTypes.ADD_COMPONENT,
-				payload: [component, id]
+				payload: [component, id],
 			}),
-		setNewComponents: newOrder =>
+		setNewComponents: (newOrder) =>
 			dispatch({ type: actionTypes.SET_NEW, payload: newOrder }),
-		delComponent: del => dispatch({ type: actionTypes.DEL, payload: del }),
-		setPage: page =>
+		delComponent: (del) =>
+			dispatch({ type: actionTypes.DEL, payload: del }),
+		setPage: (page) =>
 			dispatch({ type: actionTypes.PAGE_CHANGE, payload: page }),
 		addCopy: (text, id) =>
 			dispatch({
 				type: actionTypes.ADD_COPY,
-				payload: [text, id]
-			})
+				payload: [text, id],
+			}),
 	};
 };
 
