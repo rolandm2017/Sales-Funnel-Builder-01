@@ -2,7 +2,8 @@ import React from "react";
 
 import { connect } from "react-redux";
 
-import Div from "./Div";
+import Div from "../Parts/Div";
+import Button from "../Parts/Button";
 
 const footer = (props) => {
     return (
@@ -10,7 +11,7 @@ const footer = (props) => {
             {props.customText ? <p>{props.customText}</p> : <p>Footer</p>}
 
             {props.pg === 1 ? (
-                <button onClick={props.del}>Remove Footer</button>
+                <Button onClick={props.del}>Remove Footer</Button>
             ) : null}
         </Div>
     );

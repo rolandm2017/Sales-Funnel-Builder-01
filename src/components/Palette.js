@@ -6,6 +6,10 @@ import { connect } from "react-redux";
 
 import styled from "styled-components";
 
+import FlexDiv from "./Parts/FlexDiv";
+import FlexCol from "./Parts/FlexCol";
+import LinkButton from "./Parts/LinkButton";
+
 import Header from "./Copy/Header";
 import Headline from "./Copy/Headline";
 import TextArea from "./Copy/TextArea";
@@ -24,19 +28,6 @@ const Button = styled.button`
     &:hover {
         background-color: #ff1133;
     }
-`;
-
-const FlexDiv = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const FlexCol = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 `;
 
 class Palette extends Component {
@@ -335,7 +326,7 @@ class Palette extends Component {
 				<p>Debugging, page: {this.props.pg}</p> */}
                 <div class="buffer"></div>
                 <div class="main">
-                    <h2>Select Your Custom Elements</h2>
+                    <h2>Select Page Elements</h2>
                     <FlexDiv>
                         <Button onClick={(e) => this.addComponent(e)}>
                             Header
@@ -357,7 +348,11 @@ class Palette extends Component {
                         </Button>
                     </FlexDiv>
                     <FlexCol>{this.renderStateComponents()}</FlexCol>
-                    <Link to="/customize">Go To Next Step</Link>
+                    <FlexDiv>
+                        <LinkButton>
+                            <Link to="/customize">Go To Next Step</Link>
+                        </LinkButton>
+                    </FlexDiv>
                 </div>
             </div>
         );

@@ -2,7 +2,8 @@ import React from "react";
 
 import { connect } from "react-redux";
 
-import Div from "./Div";
+import Div from "../Parts/Div";
+import Button from "../Parts/Button";
 
 const emailField = (props) => {
     return (
@@ -15,9 +16,9 @@ const emailField = (props) => {
             <br />
             {props.pg === 1 ? (
                 <div>
-                    <button onClick={props.moveUp}>Move Section Up</button>
-                    <button onClick={props.moveDown}>Move Section Down</button>
-                    <button onClick={props.del}>Delete Section</button>
+                    <Button onClick={props.moveUp}>Move Section Up</Button>
+                    <Button onClick={props.moveDown}>Move Section Down</Button>
+                    <Button onClick={props.del}>Delete Section</Button>
                 </div>
             ) : null}
         </Div>

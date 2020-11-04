@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 
-import Div from "./Div";
+import Div from "../Parts/Div";
+import Button from "../Parts/Button";
 
 class TextArea extends Component {
     render() {
@@ -16,13 +17,13 @@ class TextArea extends Component {
 
                 {this.props.pg === 1 ? (
                     <div>
-                        <button onClick={this.props.moveUp}>
+                        <Button onClick={this.props.moveUp}>
                             Move Section Up
-                        </button>
-                        <button onClick={this.props.moveDown}>
+                        </Button>
+                        <Button onClick={this.props.moveDown}>
                             Move Section Down
-                        </button>
-                        <button onClick={this.props.del}>Delete Section</button>
+                        </Button>
+                        <Button onClick={this.props.del}>Delete Section</Button>
                     </div>
                 ) : null}
             </Div>
