@@ -51,13 +51,13 @@ class Customize extends Component {
 									padding: "0.5em",
 									border: "1px solid black",
 									backgroundColor: "#c7cdd6",
-									display: "inline-block"
+									display: "inline-block",
 								}}
 							>
 								<input
 									key={this.props.comp.length + i}
 									associate={this.props.comp[i].id}
-									onChange={e =>
+									onChange={(e) =>
 										this.props.addCopy(
 											e.target.value,
 											this.props.copy[i].id
@@ -81,13 +81,13 @@ class Customize extends Component {
 									padding: "0.5em",
 									border: "1px solid black",
 									backgroundColor: "#c7cdd6",
-									display: "inline-block"
+									display: "inline-block",
 								}}
 							>
 								<input
 									key={this.props.comp.length + i}
 									associate={this.props.comp[i].id}
-									onChange={e =>
+									onChange={(e) =>
 										this.props.addCopy(
 											e.target.value,
 											this.props.copy[i].id
@@ -120,13 +120,13 @@ class Customize extends Component {
 									padding: "0.5em",
 									border: "1px solid black",
 									backgroundColor: "#c7cdd6",
-									display: "inline-block"
+									display: "inline-block",
 								}}
 							>
 								<input
 									key={this.props.comp.length + i}
 									associate={this.props.comp[i].id}
-									onChange={e =>
+									onChange={(e) =>
 										this.props.addCopy(
 											e.target.value,
 											this.props.copy[i].id
@@ -150,14 +150,14 @@ class Customize extends Component {
 									padding: "0.5em",
 									border: "1px solid black",
 									backgroundColor: "#c7cdd6",
-									display: "inline-block"
+									display: "inline-block",
 								}}
 							>
 								<input
 									key={this.props.comp.length + i}
 									associate={this.props.comp[i].id}
 									// FIXME: getting TypeError: Cannot read property 'id' of undefined on typing
-									onChange={e =>
+									onChange={(e) =>
 										this.props.addCopy(
 											e.target.value,
 											this.props.copy[i].id
@@ -187,13 +187,13 @@ class Customize extends Component {
 									padding: "0.5em",
 									border: "1px solid black",
 									backgroundColor: "#c7cdd6",
-									display: "inline-block"
+									display: "inline-block",
 								}}
 							>
 								<input
 									key={this.props.comp.length + i}
 									associate={this.props.comp[i].id}
-									onChange={e =>
+									onChange={(e) =>
 										this.props.addCopy(
 											e.target.value,
 											this.props.copy[i].id
@@ -217,13 +217,13 @@ class Customize extends Component {
 									padding: "0.5em",
 									border: "1px solid black",
 									backgroundColor: "#c7cdd6",
-									display: "inline-block"
+									display: "inline-block",
 								}}
 							>
 								<input
 									key={this.props.comp.length + i}
 									associate={this.props.comp[i].id}
-									onChange={e =>
+									onChange={(e) =>
 										this.props.addCopy(
 											e.target.value,
 											this.props.copy[i].id
@@ -253,13 +253,13 @@ class Customize extends Component {
 									padding: "0.5em",
 									border: "1px solid black",
 									backgroundColor: "#c7cdd6",
-									display: "inline-block"
+									display: "inline-block",
 								}}
 							>
 								<input
 									key={this.props.comp.length + i}
 									associate={this.props.comp[i].id}
-									onChange={e =>
+									onChange={(e) =>
 										this.props.addCopy(
 											e.target.value,
 											this.props.comp[i].id
@@ -283,13 +283,13 @@ class Customize extends Component {
 									padding: "0.5em",
 									border: "1px solid black",
 									backgroundColor: "#c7cdd6",
-									display: "inline-block"
+									display: "inline-block",
 								}}
 							>
 								<input
 									key={this.props.comp.length + i}
 									associate={this.props.comp[i].id}
-									onChange={e =>
+									onChange={(e) =>
 										this.props.addCopy(
 											e.target.value,
 											this.props.comp[i].id
@@ -336,13 +336,13 @@ class Customize extends Component {
 									padding: "0.5em",
 									border: "1px solid black",
 									backgroundColor: "#c7cdd6",
-									display: "inline-block"
+									display: "inline-block",
 								}}
 							>
 								<input
 									key={this.props.comp.length + i}
 									associate={this.props.comp[i].id}
-									onChange={e =>
+									onChange={(e) =>
 										this.props.addCopy(
 											e.target.value,
 											this.props.comp[i].id
@@ -366,13 +366,13 @@ class Customize extends Component {
 									padding: "0.5em",
 									border: "1px solid black",
 									backgroundColor: "#c7cdd6",
-									display: "inline-block"
+									display: "inline-block",
 								}}
 							>
 								<input
 									key={this.props.comp.length + i}
 									associate={this.props.comp[i].id}
-									onChange={e =>
+									onChange={(e) =>
 										this.props.addCopy(
 											e.target.value,
 											this.props.comp[i].id
@@ -403,31 +403,30 @@ class Customize extends Component {
 				<Link to="/">Back</Link>
 				<br />
 				<Link to="/finalpage">Go To Third Page</Link>
-				<p>Note: You lose your work if you refresh the page!</p>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		comp: state.components,
 		pg: state.currentPage,
-		copy: state.copy
+		copy: state.copy,
 	};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
 	return {
-		setPage: page =>
+		setPage: (page) =>
 			dispatch({ type: actionTypes.PAGE_CHANGE, payload: page }),
-		getNewStateVariable: stateId =>
+		getNewStateVariable: (stateId) =>
 			dispatch({ type: actionTypes.NEW_VAR, payload: stateId }),
 		addCopy: (text, id) =>
 			dispatch({
 				type: actionTypes.ADD_COPY,
-				payload: [text, id]
-			})
+				payload: [text, id],
+			}),
 	};
 };
 

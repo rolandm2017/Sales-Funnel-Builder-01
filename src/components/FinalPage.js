@@ -177,9 +177,9 @@ class FinalPage extends Component {
 		return toRender;
 	}
 
-	handleChange = e => {
+	handleChange = (e) => {
 		this.setState({
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
 		});
 	};
 
@@ -209,28 +209,26 @@ class FinalPage extends Component {
 
 				<Link to="/customize">Back</Link>
 				<br />
-
-				<p>Note: You lose your work if you refresh the page!</p>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		comp: state.components,
 		pg: state.currentPage,
 		copy: state.copy,
-		siteURL: state.siteURL
+		siteURL: state.siteURL,
 	};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
 	return {
-		setPage: page =>
+		setPage: (page) =>
 			dispatch({ type: actionTypes.PAGE_CHANGE, payload: page }),
-		setURL: domain =>
-			dispatch({ type: actionTypes.SET_URL, payload: domain })
+		setURL: (domain) =>
+			dispatch({ type: actionTypes.SET_URL, payload: domain }),
 	};
 };
 
