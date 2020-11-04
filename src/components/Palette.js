@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 
 import styled from "styled-components";
 
+import Bg from "./Parts/Bg";
 import FlexDiv from "./Parts/FlexDiv";
 import FlexCol from "./Parts/FlexCol";
 import LinkButton from "./Parts/LinkButton";
@@ -48,24 +49,6 @@ class Palette extends Component {
         }
         if (e.target.innerHTML === "Header" && headerArray.length < 1) {
             // Redux dispatch methods
-
-            // // Implementing a fix for "TypeError: Cannot read property 'id' of undefined" on typing in input field
-            // // this if statement checks if we need to modify the .copy state property
-            // if (this.props.comp.length > this.props.copy.length) {
-            // 	// let copyIds = [];
-            // 	// for (let i = this.props.copy.length; i < this.props.comp.length; i++) {}
-            // 	let nextCopyId = 0;
-            // 	console.log("compare:", this.props.copy !== []);
-            // 	if (this.props.copy.length > 0) {
-            // 		console.log("goose:", this.props.copy[0]);
-            // 		nextCopyId = this.props.copy.pop().id + 1;
-            // 	}
-            // 	console.log(nextCopyId);
-            // 	this.props.header(nextCopyId);
-            // } else {
-            // 	this.props.header();
-            // }
-
             // // NOTE: before Fix was implenented, this if block simply read: "this.props.header()"
             this.props.addComp("Header", nextCopyId);
         } else if (e.target.innerHTML === "Headline") {
@@ -321,7 +304,7 @@ class Palette extends Component {
         // }
 
         return (
-            <div>
+            <Bg>
                 {/* <p>Debugging: {debugging}</p>
 				<p>Debugging, page: {this.props.pg}</p> */}
                 <div class="buffer"></div>
@@ -357,7 +340,7 @@ class Palette extends Component {
                     {/* TODO-TODAY: fix position of background div, the one with the money */}
                 </div>
                 <div class="buffer"></div>
-            </div>
+            </Bg>
         );
     }
 }

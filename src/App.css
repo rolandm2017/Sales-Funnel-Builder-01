@@ -1,5 +1,7 @@
 .App {
     text-align: center;
+    background: url("./assets/images/money.png") no-repeat center center fixed;
+    z-index: 5;
 }
 
 .App-logo {

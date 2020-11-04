@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const Div = styled.div`
-    background-color: #ffffff;
+    width: 80% !important;
     margin: 0 2.5em;
     padding: 0.5em;
-    width: 80%;
+    background-color: #ffffff;
 `;
 
 export default Div;

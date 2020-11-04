@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 
 import styled from "styled-components";
 
+import Bg from "./Parts/Bg";
+import Div from "./Parts/Div";
 import FlexDiv from "./Parts/FlexDiv";
 import FlexCol from "./Parts/FlexCol";
 import LinkButton from "./Parts/LinkButton";
@@ -19,11 +21,20 @@ import Footer from "./Copy/Footer";
 
 import * as actionTypes from "../store/constants";
 
+const FlexColNoMargin = styled.div`
+    margin: 0;
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
 const InputContainer = styled.div`
-    padding: "0.5em";
-    border: "1px solid black";
-    backgroundcolor: "#c7cdd6";
-    display: "inline-block";
+    padding: 0.5em;
+    border: 1px solid black;
+    background-color: #c7cdd6;
+    display: inline-block;
 `;
 
 class Customize extends Component {
@@ -50,7 +61,7 @@ class Customize extends Component {
                 // renders an error, "cannot get .webcopy property of undefined" or something like that w/o it
                 if (this.props.copy[i]) {
                     toRender.unshift(
-                        <FlexCol>
+                        <FlexColNoMargin>
                             <Header
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
@@ -59,44 +70,48 @@ class Customize extends Component {
                                 // the customText property would render "cannot get .webcopy property of undefined"
                                 customText={this.props.copy[i].webCopy}
                             ></Header>
-                            <InputContainer>
-                                <input
-                                    key={this.props.comp.length + i}
-                                    associate={this.props.comp[i].id}
-                                    onChange={(e) =>
-                                        this.props.addCopy(
-                                            e.target.value,
-                                            this.props.copy[i].id
-                                        )
-                                    }
-                                    value={this.props.copy[i].webCopy}
-                                    placeholder="Enter custom text..."
-                                ></input>
-                            </InputContainer>
-                        </FlexCol>
+                            <Div>
+                                <InputContainer>
+                                    <input
+                                        key={this.props.comp.length + i}
+                                        associate={this.props.comp[i].id}
+                                        onChange={(e) =>
+                                            this.props.addCopy(
+                                                e.target.value,
+                                                this.props.copy[i].id
+                                            )
+                                        }
+                                        value={this.props.copy[i].webCopy}
+                                        placeholder="Enter custom text..."
+                                    ></input>
+                                </InputContainer>
+                            </Div>
+                        </FlexColNoMargin>
                     );
                 } else {
                     toRender.unshift(
-                        <FlexCol>
+                        <FlexColNoMargin>
                             <Header
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                             ></Header>
-                            <InputContainer>
-                                <input
-                                    key={this.props.comp.length + i}
-                                    associate={this.props.comp[i].id}
-                                    onChange={(e) =>
-                                        this.props.addCopy(
-                                            e.target.value,
-                                            this.props.copy[i].id
-                                        )
-                                    }
-                                    value={this.props.copy[i].webCopy}
-                                    placeholder="Enter custom text..."
-                                ></input>
-                            </InputContainer>
-                        </FlexCol>
+                            <Div>
+                                <InputContainer>
+                                    <input
+                                        key={this.props.comp.length + i}
+                                        associate={this.props.comp[i].id}
+                                        onChange={(e) =>
+                                            this.props.addCopy(
+                                                e.target.value,
+                                                this.props.copy[i].id
+                                            )
+                                        }
+                                        value={this.props.copy[i].webCopy}
+                                        placeholder="Enter custom text..."
+                                    ></input>
+                                </InputContainer>
+                            </Div>
+                        </FlexColNoMargin>
                     );
                 }
 
@@ -108,51 +123,55 @@ class Customize extends Component {
             } else if (this.props.comp[i].type === "Headline") {
                 if (this.props.copy[i]) {
                     toRender.push(
-                        <FlexCol>
+                        <FlexColNoMargin>
                             <Headline
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                                 customText={this.props.copy[i].webCopy}
                             ></Headline>
-                            <InputContainer>
-                                <input
-                                    key={this.props.comp.length + i}
-                                    associate={this.props.comp[i].id}
-                                    onChange={(e) =>
-                                        this.props.addCopy(
-                                            e.target.value,
-                                            this.props.copy[i].id
-                                        )
-                                    }
-                                    value={this.props.copy[i].webCopy}
-                                    placeholder="Enter custom text..."
-                                ></input>
-                            </InputContainer>
-                        </FlexCol>
+                            <Div>
+                                <InputContainer>
+                                    <input
+                                        key={this.props.comp.length + i}
+                                        associate={this.props.comp[i].id}
+                                        onChange={(e) =>
+                                            this.props.addCopy(
+                                                e.target.value,
+                                                this.props.copy[i].id
+                                            )
+                                        }
+                                        value={this.props.copy[i].webCopy}
+                                        placeholder="Enter custom text..."
+                                    ></input>
+                                </InputContainer>
+                            </Div>
+                        </FlexColNoMargin>
                     );
                 } else {
                     toRender.push(
-                        <FlexCol>
+                        <FlexColNoMargin>
                             <Headline
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                             ></Headline>
-                            <InputContainer>
-                                <input
-                                    key={this.props.comp.length + i}
-                                    associate={this.props.comp[i].id}
-                                    // FIXME: getting TypeError: Cannot read property 'id' of undefined on typing
-                                    onChange={(e) =>
-                                        this.props.addCopy(
-                                            e.target.value,
-                                            this.props.copy[i].id
-                                        )
-                                    }
-                                    value={this.props.copy[i].webCopy}
-                                    placeholder="Enter custom text..."
-                                ></input>
-                            </InputContainer>
-                        </FlexCol>
+                            <Div>
+                                <InputContainer>
+                                    <input
+                                        key={this.props.comp.length + i}
+                                        associate={this.props.comp[i].id}
+                                        // FIXME: getting TypeError: Cannot read property 'id' of undefined on typing
+                                        onChange={(e) =>
+                                            this.props.addCopy(
+                                                e.target.value,
+                                                this.props.copy[i].id
+                                            )
+                                        }
+                                        value={this.props.copy[i].webCopy}
+                                        placeholder="Enter custom text..."
+                                    ></input>
+                                </InputContainer>
+                            </Div>
+                        </FlexColNoMargin>
                     );
                 }
                 if (this.props.copy.length === 0) {
@@ -161,50 +180,54 @@ class Customize extends Component {
             } else if (this.props.comp[i].type === "Text Area") {
                 if (this.props.copy[i]) {
                     toRender.push(
-                        <FlexCol>
+                        <FlexColNoMargin>
                             <TextArea
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                                 customText={this.props.copy[i].webCopy}
                             ></TextArea>
-                            <InputContainer>
-                                <input
-                                    key={this.props.comp.length + i}
-                                    associate={this.props.comp[i].id}
-                                    onChange={(e) =>
-                                        this.props.addCopy(
-                                            e.target.value,
-                                            this.props.copy[i].id
-                                        )
-                                    }
-                                    value={this.props.copy[i].webCopy}
-                                    placeholder="Enter custom text..."
-                                ></input>
-                            </InputContainer>
-                        </FlexCol>
+                            <Div>
+                                <InputContainer>
+                                    <input
+                                        key={this.props.comp.length + i}
+                                        associate={this.props.comp[i].id}
+                                        onChange={(e) =>
+                                            this.props.addCopy(
+                                                e.target.value,
+                                                this.props.copy[i].id
+                                            )
+                                        }
+                                        value={this.props.copy[i].webCopy}
+                                        placeholder="Enter custom text..."
+                                    ></input>
+                                </InputContainer>
+                            </Div>
+                        </FlexColNoMargin>
                     );
                 } else {
                     toRender.push(
-                        <FlexCol>
+                        <FlexColNoMargin>
                             <TextArea
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                             ></TextArea>
-                            <InputContainer>
-                                <input
-                                    key={this.props.comp.length + i}
-                                    associate={this.props.comp[i].id}
-                                    onChange={(e) =>
-                                        this.props.addCopy(
-                                            e.target.value,
-                                            this.props.copy[i].id
-                                        )
-                                    }
-                                    value={this.props.copy[i].webCopy}
-                                    placeholder="Enter custom text..."
-                                ></input>
-                            </InputContainer>
-                        </FlexCol>
+                            <Div>
+                                <InputContainer>
+                                    <input
+                                        key={this.props.comp.length + i}
+                                        associate={this.props.comp[i].id}
+                                        onChange={(e) =>
+                                            this.props.addCopy(
+                                                e.target.value,
+                                                this.props.copy[i].id
+                                            )
+                                        }
+                                        value={this.props.copy[i].webCopy}
+                                        placeholder="Enter custom text..."
+                                    ></input>
+                                </InputContainer>
+                            </Div>
+                        </FlexColNoMargin>
                     );
                 }
                 if (this.props.copy.length === 0) {
@@ -213,50 +236,58 @@ class Customize extends Component {
             } else if (this.props.comp[i].type === "Image") {
                 if (this.props.copy[i]) {
                     toRender.push(
-                        <FlexCol>
+                        <FlexColNoMargin>
                             <Image
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                                 customText={this.props.copy[i].webCopy}
                             ></Image>
-                            <InputContainer>
-                                <input
-                                    key={this.props.comp.length + i}
-                                    associate={this.props.comp[i].id}
-                                    onChange={(e) =>
-                                        this.props.addCopy(
-                                            e.target.value,
-                                            this.props.comp[i].id
-                                        )
-                                    }
-                                    placeholder={"Type your caption here..."}
-                                    value={this.props.copy[i].webCopy}
-                                ></input>
-                            </InputContainer>
-                        </FlexCol>
+                            <Div>
+                                <InputContainer>
+                                    <input
+                                        key={this.props.comp.length + i}
+                                        associate={this.props.comp[i].id}
+                                        onChange={(e) =>
+                                            this.props.addCopy(
+                                                e.target.value,
+                                                this.props.comp[i].id
+                                            )
+                                        }
+                                        placeholder={
+                                            "Type your caption here..."
+                                        }
+                                        value={this.props.copy[i].webCopy}
+                                    ></input>
+                                </InputContainer>
+                            </Div>
+                        </FlexColNoMargin>
                     );
                 } else {
                     toRender.push(
-                        <FlexCol>
+                        <FlexColNoMargin>
                             <Image
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                             ></Image>
-                            <InputContainer>
-                                <input
-                                    key={this.props.comp.length + i}
-                                    associate={this.props.comp[i].id}
-                                    onChange={(e) =>
-                                        this.props.addCopy(
-                                            e.target.value,
-                                            this.props.comp[i].id
-                                        )
-                                    }
-                                    placeholder={"Type your caption here..."}
-                                    value={this.props.copy[i].webCopy}
-                                ></input>
-                            </InputContainer>
-                        </FlexCol>
+                            <Div>
+                                <InputContainer>
+                                    <input
+                                        key={this.props.comp.length + i}
+                                        associate={this.props.comp[i].id}
+                                        onChange={(e) =>
+                                            this.props.addCopy(
+                                                e.target.value,
+                                                this.props.comp[i].id
+                                            )
+                                        }
+                                        placeholder={
+                                            "Type your caption here..."
+                                        }
+                                        value={this.props.copy[i].webCopy}
+                                    ></input>
+                                </InputContainer>
+                            </Div>
+                        </FlexColNoMargin>
                     );
                 }
                 if (this.props.copy.length === 0) {
@@ -266,12 +297,12 @@ class Customize extends Component {
                 // the Email Field section DOES NOT need an if/else block
                 // because it does not have a "customText" property field
                 toRender.push(
-                    <div>
+                    <FlexColNoMargin>
                         <EmailField
                             key={i}
                             uniqueId={this.props.comp[i].id}
                         ></EmailField>
-                    </div>
+                    </FlexColNoMargin>
                 );
                 if (this.props.copy.length === 0) {
                     this.props.getNewStateVariable(this.props.comp[i].id);
@@ -282,50 +313,54 @@ class Customize extends Component {
             ) {
                 if (this.props.copy[i]) {
                     toRender.push(
-                        <FlexCol>
+                        <FlexColNoMargin>
                             <Footer
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                                 customText={this.props.copy[i].webCopy}
                             ></Footer>
-                            <InputContainer>
-                                <input
-                                    key={this.props.comp.length + i}
-                                    associate={this.props.comp[i].id}
-                                    onChange={(e) =>
-                                        this.props.addCopy(
-                                            e.target.value,
-                                            this.props.comp[i].id
-                                        )
-                                    }
-                                    value={this.props.copy[i].webCopy}
-                                    placeholder="Enter custom text..."
-                                ></input>
-                            </InputContainer>
-                        </FlexCol>
+                            <Div>
+                                <InputContainer>
+                                    <input
+                                        key={this.props.comp.length + i}
+                                        associate={this.props.comp[i].id}
+                                        onChange={(e) =>
+                                            this.props.addCopy(
+                                                e.target.value,
+                                                this.props.comp[i].id
+                                            )
+                                        }
+                                        value={this.props.copy[i].webCopy}
+                                        placeholder="Enter custom text..."
+                                    ></input>
+                                </InputContainer>
+                            </Div>
+                        </FlexColNoMargin>
                     );
                 } else {
                     toRender.push(
-                        <FlexCol>
+                        <FlexColNoMargin>
                             <Footer
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                             ></Footer>
-                            <InputContainer>
-                                <input
-                                    key={this.props.comp.length + i}
-                                    associate={this.props.comp[i].id}
-                                    onChange={(e) =>
-                                        this.props.addCopy(
-                                            e.target.value,
-                                            this.props.comp[i].id
-                                        )
-                                    }
-                                    value={this.props.copy[i].webCopy}
-                                    placeholder="Enter custom text..."
-                                ></input>
-                            </InputContainer>
-                        </FlexCol>
+                            <Div>
+                                <InputContainer>
+                                    <input
+                                        key={this.props.comp.length + i}
+                                        associate={this.props.comp[i].id}
+                                        onChange={(e) =>
+                                            this.props.addCopy(
+                                                e.target.value,
+                                                this.props.comp[i].id
+                                            )
+                                        }
+                                        value={this.props.copy[i].webCopy}
+                                        placeholder="Enter custom text..."
+                                    ></input>
+                                </InputContainer>
+                            </Div>
+                        </FlexColNoMargin>
                     );
                 }
                 if (this.props.copy.length === 0) {
@@ -339,10 +374,10 @@ class Customize extends Component {
 
     render() {
         return (
-            <div>
+            <Bg>
                 <div class="buffer"></div>
                 <div class="main">
-                    <h2>Your Custom Elements: Enter Custom Text</h2>
+                    <h2>Enter Custom Text</h2>
 
                     <FlexCol>{this.renderStateComponents()}</FlexCol>
                     <FlexDiv>
@@ -357,7 +392,7 @@ class Customize extends Component {
                     {/* TODO-TODAY: move enter Custom Text box inside of div */}
                 </div>
                 <div class="buffer"></div>
-            </div>
+            </Bg>
         );
     }
 }

@@ -5,29 +5,15 @@ import { connect } from "react-redux";
 
 import "./App.css";
 
-import styled from "styled-components";
+// import styled from "styled-components";
 
-import img from "./assets/images/money.png";
+// import img from "./assets/images/money.png";
 
 import Welcome from "./components/Welcome";
 import Palette from "./components/Palette";
 import Customize from "./components/Customize";
 import FinalPage from "./components/FinalPage";
 import Public from "./components/Public";
-// import Styling from "./components/Styling";
-
-const Div = styled.div`
-    height: 100vh;
-    padding: 0em;
-    margin: 0em;
-`;
-
-const Background = styled.div`
-    height: 100vh;
-    padding: 0em;
-    margin: 0em;
-    background: url(${img});
-`;
 
 function App(props) {
     return (
