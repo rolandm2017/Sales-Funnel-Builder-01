@@ -353,7 +353,10 @@ class Palette extends Component {
                             <Link to="/customize">Go To Next Step</Link>
                         </LinkButton>
                     </FlexDiv>
+                    {/* TODO-TODAY: Fix grey line on bottom of page. Add bottom margin to Link Button */}
+                    {/* TODO-TODAY: fix position of background div, the one with the money */}
                 </div>
+                <div class="buffer"></div>
             </div>
         );
     }

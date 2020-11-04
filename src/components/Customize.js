@@ -4,6 +4,12 @@ import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
+import styled from "styled-components";
+
+import FlexDiv from "./Parts/FlexDiv";
+import FlexCol from "./Parts/FlexCol";
+import LinkButton from "./Parts/LinkButton";
+
 import Header from "./Copy/Header";
 import Headline from "./Copy/Headline";
 import TextArea from "./Copy/TextArea";
@@ -12,6 +18,13 @@ import EmailField from "./Copy/EmailField";
 import Footer from "./Copy/Footer";
 
 import * as actionTypes from "../store/constants";
+
+const InputContainer = styled.div`
+    padding: "0.5em";
+    border: "1px solid black";
+    backgroundcolor: "#c7cdd6";
+    display: "inline-block";
+`;
 
 class Customize extends Component {
     componentDidMount() {
@@ -37,7 +50,7 @@ class Customize extends Component {
                 // renders an error, "cannot get .webcopy property of undefined" or something like that w/o it
                 if (this.props.copy[i]) {
                     toRender.unshift(
-                        <div>
+                        <FlexCol>
                             <Header
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
@@ -46,14 +59,7 @@ class Customize extends Component {
                                 // the customText property would render "cannot get .webcopy property of undefined"
                                 customText={this.props.copy[i].webCopy}
                             ></Header>
-                            <div
-                                style={{
-                                    padding: "0.5em",
-                                    border: "1px solid black",
-                                    backgroundColor: "#c7cdd6",
-                                    display: "inline-block",
-                                }}
-                            >
+                            <InputContainer>
                                 <input
                                     key={this.props.comp.length + i}
                                     associate={this.props.comp[i].id}
@@ -66,24 +72,17 @@ class Customize extends Component {
                                     value={this.props.copy[i].webCopy}
                                     placeholder="Enter custom text..."
                                 ></input>
-                            </div>
-                        </div>
+                            </InputContainer>
+                        </FlexCol>
                     );
                 } else {
                     toRender.unshift(
-                        <div>
+                        <FlexCol>
                             <Header
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                             ></Header>
-                            <div
-                                style={{
-                                    padding: "0.5em",
-                                    border: "1px solid black",
-                                    backgroundColor: "#c7cdd6",
-                                    display: "inline-block",
-                                }}
-                            >
+                            <InputContainer>
                                 <input
                                     key={this.props.comp.length + i}
                                     associate={this.props.comp[i].id}
@@ -96,8 +95,8 @@ class Customize extends Component {
                                     value={this.props.copy[i].webCopy}
                                     placeholder="Enter custom text..."
                                 ></input>
-                            </div>
-                        </div>
+                            </InputContainer>
+                        </FlexCol>
                     );
                 }
 
@@ -109,20 +108,13 @@ class Customize extends Component {
             } else if (this.props.comp[i].type === "Headline") {
                 if (this.props.copy[i]) {
                     toRender.push(
-                        <div>
+                        <FlexCol>
                             <Headline
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                                 customText={this.props.copy[i].webCopy}
                             ></Headline>
-                            <div
-                                style={{
-                                    padding: "0.5em",
-                                    border: "1px solid black",
-                                    backgroundColor: "#c7cdd6",
-                                    display: "inline-block",
-                                }}
-                            >
+                            <InputContainer>
                                 <input
                                     key={this.props.comp.length + i}
                                     associate={this.props.comp[i].id}
@@ -135,24 +127,17 @@ class Customize extends Component {
                                     value={this.props.copy[i].webCopy}
                                     placeholder="Enter custom text..."
                                 ></input>
-                            </div>
-                        </div>
+                            </InputContainer>
+                        </FlexCol>
                     );
                 } else {
                     toRender.push(
-                        <div>
+                        <FlexCol>
                             <Headline
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                             ></Headline>
-                            <div
-                                style={{
-                                    padding: "0.5em",
-                                    border: "1px solid black",
-                                    backgroundColor: "#c7cdd6",
-                                    display: "inline-block",
-                                }}
-                            >
+                            <InputContainer>
                                 <input
                                     key={this.props.comp.length + i}
                                     associate={this.props.comp[i].id}
@@ -166,8 +151,8 @@ class Customize extends Component {
                                     value={this.props.copy[i].webCopy}
                                     placeholder="Enter custom text..."
                                 ></input>
-                            </div>
-                        </div>
+                            </InputContainer>
+                        </FlexCol>
                     );
                 }
                 if (this.props.copy.length === 0) {
@@ -176,20 +161,13 @@ class Customize extends Component {
             } else if (this.props.comp[i].type === "Text Area") {
                 if (this.props.copy[i]) {
                     toRender.push(
-                        <div>
+                        <FlexCol>
                             <TextArea
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                                 customText={this.props.copy[i].webCopy}
                             ></TextArea>
-                            <div
-                                style={{
-                                    padding: "0.5em",
-                                    border: "1px solid black",
-                                    backgroundColor: "#c7cdd6",
-                                    display: "inline-block",
-                                }}
-                            >
+                            <InputContainer>
                                 <input
                                     key={this.props.comp.length + i}
                                     associate={this.props.comp[i].id}
@@ -202,24 +180,17 @@ class Customize extends Component {
                                     value={this.props.copy[i].webCopy}
                                     placeholder="Enter custom text..."
                                 ></input>
-                            </div>
-                        </div>
+                            </InputContainer>
+                        </FlexCol>
                     );
                 } else {
                     toRender.push(
-                        <div>
+                        <FlexCol>
                             <TextArea
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                             ></TextArea>
-                            <div
-                                style={{
-                                    padding: "0.5em",
-                                    border: "1px solid black",
-                                    backgroundColor: "#c7cdd6",
-                                    display: "inline-block",
-                                }}
-                            >
+                            <InputContainer>
                                 <input
                                     key={this.props.comp.length + i}
                                     associate={this.props.comp[i].id}
@@ -232,8 +203,8 @@ class Customize extends Component {
                                     value={this.props.copy[i].webCopy}
                                     placeholder="Enter custom text..."
                                 ></input>
-                            </div>
-                        </div>
+                            </InputContainer>
+                        </FlexCol>
                     );
                 }
                 if (this.props.copy.length === 0) {
@@ -242,20 +213,13 @@ class Customize extends Component {
             } else if (this.props.comp[i].type === "Image") {
                 if (this.props.copy[i]) {
                     toRender.push(
-                        <div>
+                        <FlexCol>
                             <Image
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                                 customText={this.props.copy[i].webCopy}
                             ></Image>
-                            <div
-                                style={{
-                                    padding: "0.5em",
-                                    border: "1px solid black",
-                                    backgroundColor: "#c7cdd6",
-                                    display: "inline-block",
-                                }}
-                            >
+                            <InputContainer>
                                 <input
                                     key={this.props.comp.length + i}
                                     associate={this.props.comp[i].id}
@@ -268,24 +232,17 @@ class Customize extends Component {
                                     placeholder={"Type your caption here..."}
                                     value={this.props.copy[i].webCopy}
                                 ></input>
-                            </div>
-                        </div>
+                            </InputContainer>
+                        </FlexCol>
                     );
                 } else {
                     toRender.push(
-                        <div>
+                        <FlexCol>
                             <Image
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                             ></Image>
-                            <div
-                                style={{
-                                    padding: "0.5em",
-                                    border: "1px solid black",
-                                    backgroundColor: "#c7cdd6",
-                                    display: "inline-block",
-                                }}
-                            >
+                            <InputContainer>
                                 <input
                                     key={this.props.comp.length + i}
                                     associate={this.props.comp[i].id}
@@ -298,8 +255,8 @@ class Customize extends Component {
                                     placeholder={"Type your caption here..."}
                                     value={this.props.copy[i].webCopy}
                                 ></input>
-                            </div>
-                        </div>
+                            </InputContainer>
+                        </FlexCol>
                     );
                 }
                 if (this.props.copy.length === 0) {
@@ -325,20 +282,13 @@ class Customize extends Component {
             ) {
                 if (this.props.copy[i]) {
                     toRender.push(
-                        <div>
+                        <FlexCol>
                             <Footer
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                                 customText={this.props.copy[i].webCopy}
                             ></Footer>
-                            <div
-                                style={{
-                                    padding: "0.5em",
-                                    border: "1px solid black",
-                                    backgroundColor: "#c7cdd6",
-                                    display: "inline-block",
-                                }}
-                            >
+                            <InputContainer>
                                 <input
                                     key={this.props.comp.length + i}
                                     associate={this.props.comp[i].id}
@@ -351,24 +301,17 @@ class Customize extends Component {
                                     value={this.props.copy[i].webCopy}
                                     placeholder="Enter custom text..."
                                 ></input>
-                            </div>
-                        </div>
+                            </InputContainer>
+                        </FlexCol>
                     );
                 } else {
                     toRender.push(
-                        <div>
+                        <FlexCol>
                             <Footer
                                 key={i}
                                 uniqueId={this.props.comp[i].id}
                             ></Footer>
-                            <div
-                                style={{
-                                    padding: "0.5em",
-                                    border: "1px solid black",
-                                    backgroundColor: "#c7cdd6",
-                                    display: "inline-block",
-                                }}
-                            >
+                            <InputContainer>
                                 <input
                                     key={this.props.comp.length + i}
                                     associate={this.props.comp[i].id}
@@ -381,8 +324,8 @@ class Customize extends Component {
                                     value={this.props.copy[i].webCopy}
                                     placeholder="Enter custom text..."
                                 ></input>
-                            </div>
-                        </div>
+                            </InputContainer>
+                        </FlexCol>
                     );
                 }
                 if (this.props.copy.length === 0) {
@@ -401,11 +344,19 @@ class Customize extends Component {
                 <div class="main">
                     <h2>Your Custom Elements: Enter Custom Text</h2>
 
-                    {this.renderStateComponents()}
-                    <Link to="/">Back</Link>
-                    <br />
-                    <Link to="/finalpage">Go To Third Page</Link>
+                    <FlexCol>{this.renderStateComponents()}</FlexCol>
+                    <FlexDiv>
+                        <LinkButton>
+                            <Link to="/palette">Back</Link>
+                        </LinkButton>
+                        <br />
+                        <LinkButton>
+                            <Link to="/finalpage">Go To Third Page</Link>
+                        </LinkButton>
+                    </FlexDiv>
+                    {/* TODO-TODAY: move enter Custom Text box inside of div */}
                 </div>
+                <div class="buffer"></div>
             </div>
         );
     }
