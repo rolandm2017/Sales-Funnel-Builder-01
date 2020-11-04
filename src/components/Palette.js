@@ -32,6 +32,13 @@ const FlexDiv = styled.div`
     align-items: center;
 `;
 
+const FlexCol = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
 class Palette extends Component {
     componentDidMount() {
         this.props.setPage(1);
@@ -349,7 +356,7 @@ class Palette extends Component {
                             Footer
                         </Button>
                     </FlexDiv>
-                    <div>{this.renderStateComponents()}</div>
+                    <FlexCol>{this.renderStateComponents()}</FlexCol>
                     <Link to="/customize">Go To Next Step</Link>
                 </div>
             </div>
