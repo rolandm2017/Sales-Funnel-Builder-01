@@ -42,5 +42,8 @@
 	},
 	"devDependencies": {
 		"gh-pages": "^2.2.0"
+	},
+	"prettier": {
+		"tabWidth": 4
 	}
 }
