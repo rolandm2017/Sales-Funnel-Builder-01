@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
+import styled from "styled-components";
+
+import Button from "./Parts/Button";
 import Bg from "./Parts/Bg";
 import FlexDiv from "./Parts/FlexDiv";
 import FlexCol from "./Parts/FlexCol";
@@ -18,6 +21,25 @@ import EmailField from "./Copy/EmailField";
 import Footer from "./Copy/Footer";
 
 import * as actionTypes from "../store/constants";
+
+const Input = styled.input`
+    width: 200px;
+    height: 50px;
+    margin: 0 15px;
+    padding: 0 0 0 10px;
+    background-color: papayawhip;
+    border: 5px solid papayawhip;
+    border-radius: 10px;
+`;
+
+const InputContainer = styled.div`
+    width: 240px;
+`;
+
+const Divider = styled.div`
+    width: calc((100% - 240px) / 2);
+    text-align: left;
+`;
 
 class FinalPage extends Component {
     componentDidMount() {
@@ -200,13 +222,19 @@ class FinalPage extends Component {
                 <div>
                     <h2>Ready To Render, Now Select A Domain Name...</h2>
 
-                    <input
-                        onChange={this.handleChange}
-                        name="domain"
-                        placeholder={"Choose a name for your site..."}
-                    ></input>
-
-                    <button onClick={this.submitDomain}>Ready!</button>
+                    <FlexDiv>
+                        <Divider></Divider>
+                        <InputContainer>
+                            <Input
+                                onChange={this.handleChange}
+                                name="domain"
+                                placeholder={"Choose a name for your site..."}
+                            ></Input>
+                        </InputContainer>
+                        <Divider>
+                            <Button onClick={this.submitDomain}>Ready!</Button>
+                        </Divider>
+                    </FlexDiv>
                     <p>
                         Pick a domain name like "YourNewSite" or
                         "MyCoolProduct".
