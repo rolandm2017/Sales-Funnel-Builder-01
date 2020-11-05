@@ -10,6 +10,7 @@ import Bg from "./Parts/Bg";
 import Div from "./Parts/Div";
 import FlexDiv from "./Parts/FlexDiv";
 import FlexCol from "./Parts/FlexCol";
+import FlexColNoMargin from "./Parts/FlexColNoMargin";
 import LinkButton from "./Parts/LinkButton";
 
 import Header from "./Copy/Header";
@@ -20,15 +21,6 @@ import EmailField from "./Copy/EmailField";
 import Footer from "./Copy/Footer";
 
 import * as actionTypes from "../store/constants";
-
-const FlexColNoMargin = styled.div`
-    margin: 0;
-    width: 100% !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
 
 const InputContainer = styled.div`
     padding: 0.5em;
