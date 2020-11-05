@@ -19,31 +19,6 @@ import * as actionTypes from "../store/constants";
 // TODO: .Split() up each text into individual words, count the words, allow user to add
 // highlighting from the nth word to the mth word
 
-// const styler = (
-// 	<div>
-// 		<p>From</p>
-// 		<input
-// 			type="text"
-// 			size="25"
-// 			style={{ width: "50px" }}
-// 			placeholder="From"
-// 			onChange={e =>
-// 				this.props.setStartPoint(e.target.value, this.props.comp[i].id)
-// 			}
-// 		></input>
-// 		<p>To</p>
-// 		<input
-// 			type="text"
-// 			size="25"
-// 			style={{ width: "50px" }}
-// 			placeholder="To"
-// 			onChange={e =>
-// 				this.props.setEndPoint(e.target.value, this.props.comp[i].id)
-// 			}
-// 		></input>
-// 	</div>
-// );
-
 class Styling extends Component {
 	renderStateComponents() {
 		// Is it really DRY enough having the same function in both Palette.js and Customize.js?
@@ -180,25 +155,25 @@ class Styling extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		comp: state.components,
 		pg: state.currentPage,
 		copy: state.copy,
-		siteURL: state.siteURL
+		siteURL: state.siteURL,
 	};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
 	return {
-		setPage: page =>
+		setPage: (page) =>
 			dispatch({ type: actionTypes.PAGE_CHANGE, payload: page }),
-		setURL: domain =>
+		setURL: (domain) =>
 			dispatch({ type: actionTypes.SET_URL, payload: domain }),
-		setStartPoint: anchor =>
+		setStartPoint: (anchor) =>
 			dispatch({ type: actionTypes.SET_START, payload: anchor }),
-		setEndPoint: anchor =>
-			dispatch({ type: actionTypes.SET_END, payload: anchor })
+		setEndPoint: (anchor) =>
+			dispatch({ type: actionTypes.SET_END, payload: anchor }),
 	};
 };
 

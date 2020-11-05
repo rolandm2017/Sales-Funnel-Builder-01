@@ -1,0 +1,39 @@
+#welcome__button {
+	width: 20%;
+	height: 2em;
+	font-size: 1em;
+	border: transparent;
+	background-color: #ff8484;
+}
+
+#welcome__button:hover {
+	background-color: #ff1133;
+}
+
+#welcome__centering {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#welcome__centering * {
+	color: white;
+	font-family: Aleo, serif;
+}
+
+#welcome__centering div h1 {
+	font-size: 30px;
+}
+
+#welcome__centering div h2 {
+	font-size: 34px;
+}
+
+#welcome__centering div h3 {
+	font-size: 24px;
+}
+
+.welcome__underline {
+	text-decoration: underline;
+}
